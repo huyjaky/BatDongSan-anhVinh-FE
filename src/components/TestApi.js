@@ -5,17 +5,26 @@ const testApi = () => {
   const [nhanvien, setNhanvien] = useState();
 
   const getNhanvien = async () => {
-    let data = await axios.get('http://localhost:4000');
-    console.log(data);
+    let data = await axios.get('http://localhost:4000/');
+    console.log('count');
+    setNhanvien(data);
   };
 
   useEffect(() => {
     getNhanvien();
-  }, [nhanvien]);
+  }, []);
 
   return (
     <div>
-      check123456
+      {nhanvien &&
+        nhanvien.data.map((item, index) => {
+          return (
+            <div key={index}>
+              {console.log(item)}
+            </div>
+          )
+        })
+      }
     </div>
   );
 };
