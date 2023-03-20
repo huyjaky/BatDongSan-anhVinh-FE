@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SuccessLogin from './loading/SuccessLogin';
 
 const Loginpage = () => {
-  const [TenNhanVien, setTenNhanVien] = useState('');
+  const [TaiKhoan, setTaiKhoan] = useState('');
   const [MatKhau, setMatKhau] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,14 +15,14 @@ const Loginpage = () => {
       {isLoading == false ? (
         <form style={{ color: 'grey' }}>
           <div className="mb-3">
-            <label htmlFor="TenNhanVien" className="form-label">
+            <label htmlFor="TaiKhoan" className="form-label">
               UserName
             </label>
             <input
               type="text"
               className="form-control"
-              id="TenNhanVien"
-              onChange={(event) => setTenNhanVien(event.target.value)}
+              id="TaiKhoan"
+              onChange={(event) => setTaiKhoan(event.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -45,8 +45,8 @@ const Loginpage = () => {
           </button>
         </form>
       ) : (
-        <SuccessLogin 
-          TenNhanVien={TenNhanVien}
+        <SuccessLogin
+          TaiKhoan={TaiKhoan}
           MatKhau={MatKhau}
         />
       )}

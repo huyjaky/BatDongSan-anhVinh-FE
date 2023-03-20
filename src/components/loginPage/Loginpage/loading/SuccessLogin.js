@@ -9,16 +9,15 @@ const SuccessLogin = (props) => {
 
   const fetchData = async () => {
     let data = await axios.post('http://localhost:4000/api/login', {
-      TaiKoan: 'huy',
-      MatKhau: '123'
+      TaiKhoan: TaiKhoan,
+      MatKhau: MatKhau
     });
-
     console.log(data);
   }
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   if (isLoading) {
     return (
