@@ -3,15 +3,20 @@ import axios from 'axios';
 
 const testApi = () => {
   const [nhanvien, setNhanvien] = useState();
+  const [TenNhanVien, setTenNhanVien] = useState('');
+  const [MatKhau, setMatKhau] = useState('');
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  const getNhanvien = async () => {
-    let data = await axios.get('http://localhost:4000/');
-    console.log('count');
-    setNhanvien(data);
-  };
+  const check = async () => {
+    let data = await axios.post('http://localhost:4000/api/login', {
+      TenNhanVien: 'jajajajau2',
+      MatKhau: '$2b$10$w58B4yAdtVqC22UWuPZ3gOxnaJxk7Mhu.k6CDhT6CFN'
+    })
+    console.log(data);
+  }
 
   useEffect(() => {
-    getNhanvien();
+    check();
   }, []);
 
   return (
@@ -20,7 +25,7 @@ const testApi = () => {
         nhanvien.data.map((item, index) => {
           return (
             <div key={index}>
-              {console.log(item)}
+
             </div>
           )
         })
