@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import logo from '../../assets/img/icons8-vue-js-600.png';
 import axios from 'axios';
 
-const testApi = () => {
+const Login = () => {
   const [nhanvien, setNhanvien] = useState();
   const [TenNhanVien, setTenNhanVien] = useState('');
   const [MatKhau, setMatKhau] = useState('');
@@ -21,17 +22,9 @@ const testApi = () => {
 
   return (
     <div>
-      {nhanvien &&
-        nhanvien.data.map((item, index) => {
-          return (
-            <div key={index}>
-
-            </div>
-          )
-        })
-      }
+      <img src={logo}/>
     </div>
   );
 };
 
-export default testApi;
+export default Login;
