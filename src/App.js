@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import ErrorPage from './components/errorPage/ErrorPage';
@@ -9,11 +9,20 @@ import Navbar from './components/nav/Navbar';
 import Homepage from './features/Homepage/Homepage';
 import Login from './features/Loginpage/Homepage';
 import Upload from './features/Uploadpage/Upload';
+import { setLogIn } from './store/actions/Log';
 import { getIsLogIn } from './store/Selector';
 
 function App() {
-  const isLoggedIn = useSelector(getIsLogIn);
-  
+  const dispatch = useDispatch();
+  var isLoggedIn = useSelector(getIsLogIn);
+
+  if (isLoggedIn != sessionStorage.getItem('Log')) {
+
+    // neu no khong giong sessionlocalstage thi gan lai gia tri cho no
+    dispatch(setLogIn(sessionStorage.getItem('Log')));
+    
+  }
+
 
   useEffect(() => {
     // handle any side effects here if needed
@@ -30,11 +39,11 @@ function App() {
               <>
                 <Route path='/homepage' element={<Homepage />} />
                 <Route path='/news' element={<Homepage />} />
+                <Route path='/upload' element={<Upload />} />
               </>
             ) : (
-              <Route path='/err' element={<ErrorPage />} />
+              <Route path='/:trash' element={<ErrorPage />} />
             )}
-            <Route path='/upload' element={<Upload />} />
           </Routes>
         </header>
       </div>

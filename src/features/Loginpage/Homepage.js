@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
 import logo from '../../assets/img/icons8-vue-js-600.png';
-import './Style.scss';
 import Loginpage from './Login/Loginpage';
+import './Style.scss';
 
 const Login = () => {
   return (
     <div className="homepage-container">
-      <img src={logo} />
+      <img src={logo} style={{scale: '0.6', padding: '0'}}/>
+      <hr />
       <div className="homepage-item_btn">
         <button
           type="button"

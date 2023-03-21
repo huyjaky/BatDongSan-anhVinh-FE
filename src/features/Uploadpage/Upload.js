@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
 
 // Import React FilePond
 import { FilePond, registerPlugin } from 'react-filepond'
@@ -22,15 +21,16 @@ function Upload() {
 
   const [files, setFiles] = useState([])
   return (
-    <div className="file-pond" style={{width: '50vw', height: '50vh'}}>
+    <div className="file-pond" style={{ width: '40%', height: '100%', marginTop: '10vh', zIndex: '0' }}>
       <FilePond
         files={files}
         onupdatefiles={setFiles}
         allowMultiple={true}
-        maxFiles={3}
-        server="/api"
+        maxFiles={20}
+        server="http://localhost:4000/api/img"
         name="files" /* sets the file input name, it's filepond by default */
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+        acceptedFileTypes={['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/svg+xml', 'image/webp', 'image/tiff', 'image/x-icon', 'application/pdf']}
       />
     </div>
   )
