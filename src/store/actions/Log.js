@@ -1,6 +1,7 @@
 
-export const setLogIn = () => {
+export const setLogIn = (current) => {
   return {
-    type: 'SET_LOGIN'
+    type: 'SET_LOGIN',
+    payload: current
   }
 }

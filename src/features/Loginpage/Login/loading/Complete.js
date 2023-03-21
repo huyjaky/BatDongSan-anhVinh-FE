@@ -1,17 +1,22 @@
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { setLogIn } from '../../../../store/actions/Log';
+import { getIsLogIn } from '../../../../store/Selector';
 
 const Complete = () => {
-  const [redirect_, setRedirect] = useState(false);
   const dispatch = useDispatch();
 
-  const handleOnClick = () => {
-    dispatch(setLogIn());
+  const setLog = () => {
+    sessionStorage.setItem('Log', true);
+    dispatch(setLogIn(true));
   }
+
+  useEffect(() => {
+    setLog();
+  }, [useSelector(getIsLogIn)]);
 
   return (
     <div>
@@ -31,7 +36,7 @@ const Complete = () => {
         Success!
       </div>
       <Link to='/homepage'>
-        <button onClick={handleOnClick} type='button' data-bs-dismiss="modal" className="btn btn-primary" style={{ width: '100%' }}>
+        <button  data-bs-dismiss="modal" className="btn btn-primary" style={{ width: '100%' }}>
           Homepage
         </button>
       </Link>

@@ -12,13 +12,18 @@ const SuccessLogin = (props) => {
   let { TaiKhoan, MatKhau } = props;
 
   const fetchData = async () => {
-    let data = await axios.post('http://localhost:4000/api/login', {
-      TaiKhoan: TaiKhoan,
-      MatKhau: MatKhau
-    });
-    setIsLoading(false);
-    console.log(data);
-    if (data.data.errCode === 1) {
+    try {
+      let data = await axios.post('http://localhost:4000/api/login', {
+        TaiKhoan: TaiKhoan,
+        MatKhau: MatKhau
+      });
+      setIsLoading(false);
+      console.log(data);
+      if (data.data.errCode === 1) {
+        setTypeLog(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
       setTypeLog(false);
     }
   };

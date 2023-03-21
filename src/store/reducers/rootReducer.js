@@ -8,7 +8,7 @@ const rootReducer = (state = initState, action) => {
     case 'SET_LOGIN':
       return {
         ...state,
-        isLogIn: !state.isLogIn
+        isLogIn: action.payload
       }
     default:
       return state;
