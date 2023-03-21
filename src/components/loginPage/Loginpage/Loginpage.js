@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import SuccessLogin from './loading/SuccessLogin';
-
+import Loading from './loading/Loading';
 const Loginpage = () => {
   const [TaiKhoan, setTaiKhoan] = useState('');
   const [MatKhau, setMatKhau] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnClick = (event) => {
-    setIsLoading(true)
+    setIsLoading(true);
   };
 
   return (
@@ -40,15 +39,13 @@ const Loginpage = () => {
             type="button"
             onClick={handleOnClick}
             className="btn btn-primary"
-            style={{ width: '100%' }}>
+            style={{ width: '100%' }}
+          >
             Submit
           </button>
         </form>
       ) : (
-        <SuccessLogin
-          TaiKhoan={TaiKhoan}
-          MatKhau={MatKhau}
-        />
+        <Loading TaiKhoan={TaiKhoan} MatKhau={MatKhau} />
       )}
     </div>
   );

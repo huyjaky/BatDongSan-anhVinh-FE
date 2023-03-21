@@ -4,8 +4,6 @@ import './Style.scss';
 import Loginpage from './Loginpage/Loginpage';
 
 const Login = () => {
-
-
   return (
     <div className="homepage-container">
       <img src={logo} />
@@ -14,7 +12,8 @@ const Login = () => {
           type="button"
           className="btn btn-primary homepage-item_btn_styles"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+          data-bs-target="#exampleModal"
+        >
           Sign In
         </button>
       </div>
@@ -24,7 +23,8 @@ const Login = () => {
         id="exampleModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -35,14 +35,14 @@ const Login = () => {
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"></button>
+                aria-label="Close"
+              ></button>
             </div>
 
             {/* add component */}
             <div className="modal-body">
               <Loginpage />
             </div>
-
           </div>
         </div>
       </div>
