@@ -17,12 +17,9 @@ function App() {
   var isLoggedIn = useSelector(getIsLogIn);
 
   if (isLoggedIn != sessionStorage.getItem('Log')) {
-
     // neu no khong giong sessionlocalstage thi gan lai gia tri cho no
     dispatch(setLogIn(sessionStorage.getItem('Log')));
-    
   }
-
 
   useEffect(() => {
     // handle any side effects here if needed
@@ -33,16 +30,16 @@ function App() {
       <div className="App">
         <Navbar />
         <header className="App-header">
-          <Routes >
-            <Route path='/' element={<Login />} />
+          <Routes>
+            <Route path="/" element={<Login />} />
             {isLoggedIn ? (
               <>
-                <Route path='/homepage' element={<Homepage />} />
-                <Route path='/news' element={<Homepage />} />
-                <Route path='/upload' element={<Upload />} />
+                <Route path="/homepage" element={<Homepage />} />
+                <Route path="/news" element={<Homepage />} />
+                <Route path="/upload" element={<Upload />} />
               </>
             ) : (
-              <Route path='/:trash' element={<ErrorPage />} />
+              <Route path="/:trash" element={<ErrorPage />} />
             )}
           </Routes>
         </header>

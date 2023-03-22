@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getIsLogIn } from "../../store/Selector";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getIsLogIn } from '../../store/Selector';
 
 const Navbar = () => {
   let status = useSelector(getIsLogIn);
@@ -8,9 +8,13 @@ const Navbar = () => {
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary navbar-light "
-      style={{ position: 'fixed', width: '100%', zIndex: '2', boxShadow: '0px 0px 20px rgba(0, 255,255, 0.5)', backgroundColor:"#e3f2fd" }}
+      style={{
+        zIndex: '2',
+        boxShadow: '0px 0px 20px rgba(0, 255,255, 0.5)',
+        backgroundColor: '#e3f2fd'
+      }}
     >
-      <div className="container-fluid" >
+      <div className="container-fluid">
         <Link className="navbar-brand" to={status ? '/homepage' : '/'}>
           V.V.T
         </Link>

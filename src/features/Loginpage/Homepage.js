@@ -5,7 +5,7 @@ import './Style.scss';
 const Login = () => {
   return (
     <div className="homepage-container">
-      <img src={logo} style={{scale: '0.6', padding: '0'}}/>
+      <img src={logo} style={{ scale: '0.6', padding: '0' }} />
       <hr />
       <div className="homepage-item_btn">
         <button
