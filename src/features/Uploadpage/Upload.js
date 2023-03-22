@@ -27,6 +27,7 @@ function Upload() {
         onupdatefiles={setFiles}
         allowMultiple={true}
         maxFiles={20}
+        maxParallelUploads={20}
         server="http://localhost:4000/api/img"
         name="files" /* sets the file input name, it's filepond by default */
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
