@@ -1,5 +1,5 @@
-import Phuong from '../../../../components/phuong_quan/phuong/Phuong';
-import Quan from '../../../../components/phuong_quan/quan/Quan';
+import Phuong from '../phuong_quan/phuong/Phuong';
+import Quan from '../phuong_quan/quan/Quan';
 import PropTypes from 'prop-types';
 import './Style.scss';
 
@@ -8,7 +8,7 @@ const FormKhach = (props) => {
   const {Donvi} = props;
 
   return (
-    <form className="form_khach" method='post' action='/upoad/'>
+    <form className="form_khach" method='get' action='/upoad/'>
       <div className="input-group mb-3">
         <input type="text" className="form-control" placeholder="Ten Khach" aria-label="Username" />
         <span className="input-group-text">@</span>
@@ -52,9 +52,8 @@ const FormKhach = (props) => {
         <textarea className="form-control" required name='NhuCau'  aria-label="With textarea"></textarea>
       </div>
 
-      <div className='submit_form'>
+      <div className='submit_form' style={{marginTop: '20px'}}>
         <button className='btn btn-primary' style={{width: '100%'}}>Submit</button>
-        *Cac form khach mua, khach thue thi khong tai anh len duoc (cai nay fix sau)
       </div>
     </form>
   );

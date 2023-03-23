@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getQuan } from '../../../store/Selector';
+import { getQuan } from '../../../../../store/Selector';
 import './Style.scss';
 
 const Quan = () => {

@@ -27,17 +27,17 @@ const InputUpload = () => {
             </Link>
           </li>
           <li>
-            <Link className="dropdown-item" to="/upload/khachchothue" onClick={event => setSelect('Khach Thue')}>
+            <Link className="dropdown-item" to="/upload/khachchothue" onClick={event => setSelect('Khach Cho Thue')}>
               Khach Cho Thue
             </Link>
           </li>
           <li>
-            <Link className="dropdown-item" to="/upload/khachmua" onClick={event => setSelect('Khach Thue')}>
+            <Link className="dropdown-item" to="/upload/khachmua" onClick={event => setSelect('Khach Mua')}>
               Khach Mua
             </Link>
           </li>
           <li>
-            <Link className="dropdown-item" to="/upload/khachban" onClick={event => setSelect('Khach Thue')}>
+            <Link className="dropdown-item" to="/upload/khachban" onClick={event => setSelect('Khach Ban')}>
               Khach Ban
             </Link>
           </li>

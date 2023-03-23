@@ -52,6 +52,7 @@ function Upload() {
 
   return (
     <>
+
       <InputUpload />
       <div
         className="file-pond"
@@ -65,7 +66,7 @@ function Upload() {
           maxParallelUploads={30}
           server="http://localhost:4000/api/img"
           name="files" /* sets the file input name, it's filepond by default */
-          labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+          labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
           acceptedFileTypes={[
             'image/jpeg',
             'image/png',
@@ -77,7 +78,6 @@ function Upload() {
             'image/x-icon',
             'application/pdf'
           ]}
-
         />
       </div>
     </>
