@@ -53,7 +53,7 @@ const FormKhachThue = () => {
       <div className="input-group mb-3">
         <span className="input-group-text">VND</span>
         <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
-        <span className="input-group-text">Trieu</span>
+        <span className="input-group-text">Ty</span>
       </div>
 
       <div className="input-group">

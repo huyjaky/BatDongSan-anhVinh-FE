@@ -1,8 +1,8 @@
 const initState = {
-  isLogIn: false
+  isLogIn: false,
 };
 
-const rootReducer = (state = initState, action) => {
+const LoginReducer = (state = initState, action) => {
   switch (action.type) {
     case 'SET_LOGIN':
       return {
@@ -14,4 +14,4 @@ const rootReducer = (state = initState, action) => {
   }
 };
 
-export default rootReducer;
+export default LoginReducer;

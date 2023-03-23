@@ -2,7 +2,7 @@ import Phuong from '../../../../components/phuong_quan/phuong/Phuong';
 import Quan from '../../../../components/phuong_quan/quan/Quan';
 import './Style.scss';
 
-const FormKhachThue = () => {
+const FormKhachMua = () => {
   return (
     <div className="form_khachthue">
       <div className="input-group mb-3">
@@ -53,7 +53,7 @@ const FormKhachThue = () => {
       <div className="input-group mb-3">
         <span className="input-group-text">VND</span>
         <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
-        <span className="input-group-text">Trieu</span>
+        <span className="input-group-text">Ty</span>
       </div>
 
       <div className="input-group">
@@ -64,4 +64,4 @@ const FormKhachThue = () => {
   );
 };
 
-export default FormKhachThue;
+export default FormKhachMua;

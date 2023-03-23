@@ -8,6 +8,8 @@ import ErrorPage from './components/errorPage/ErrorPage';
 import Navbar from './components/nav/Navbar';
 import Homepage from './features/Homepage/Homepage';
 import Login from './features/Loginpage/Homepage';
+import FormKhachMua from './features/Uploadpage/InputUpload/formKhachMua/FormKhachMua';
+import FormKhachThue from './features/Uploadpage/InputUpload/formKhachThue/FormKhachThue';
 import Upload from './features/Uploadpage/Upload';
 import { setLogIn } from './store/actions/Log';
 import { getIsLogIn } from './store/Selector';
@@ -15,7 +17,6 @@ import { getIsLogIn } from './store/Selector';
 function App() {
   const dispatch = useDispatch();
   var isLoggedIn = useSelector(getIsLogIn);
-
   if (isLoggedIn != sessionStorage.getItem('Log')) {
     // neu no khong giong sessionlocalstage thi gan lai gia tri cho no
     dispatch(setLogIn(sessionStorage.getItem('Log')));
@@ -23,6 +24,7 @@ function App() {
 
   useEffect(() => {
     // handle any side effects here if needed
+    console.log(isLoggedIn);
   }, [isLoggedIn]);
 
   return (
@@ -36,7 +38,11 @@ function App() {
               <>
                 <Route path="/homepage" element={<Homepage />} />
                 <Route path="/news" element={<Homepage />} />
-                <Route path="/upload" element={<Upload />} />
+                <Route path="/upload" element={<Upload />} >
+                  <Route path="/upload/khachthue" element={<FormKhachThue />} />
+                  <Route path='/upload/khachmua' element={<FormKhachMua />} />
+                  <Route path="/upload/" element={<FormKhachThue />} />
+                </Route>
               </>
             ) : (
               <Route path="/:trash" element={<ErrorPage />} />
