@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import FormKhachThue from './formKhachMua/FormKhachMua';
 import './Style.scss';
 
 const InputUpload = () => {
   const [select, setSelect] = useState('Loai Khach');
-  
+
 
   return (
-    <div style={{ width: '100%' }} className=" dropdown_inp">
+    <div style={{ width: '100%', height: '100%' }} className=" dropdown_inp">
       <div className="btn-group" style={{ width: '60%', marginBottom: '30px' }}>
         <button
           type="button"
@@ -28,9 +27,19 @@ const InputUpload = () => {
             </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="/upload/khachmua" onClick={event => setSelect('Khach Mua')}>
+            <Link className="dropdown-item" to="/upload/khachchothue" onClick={event => setSelect('Khach Thue')}>
+              Khach Cho Thue
+            </Link>
+          </li>
+          <li>
+            <Link className="dropdown-item" to="/upload/khachmua" onClick={event => setSelect('Khach Thue')}>
               Khach Mua
-            </a>
+            </Link>
+          </li>
+          <li>
+            <Link className="dropdown-item" to="/upload/khachban" onClick={event => setSelect('Khach Thue')}>
+              Khach Ban
+            </Link>
           </li>
         </ul>
       </div>

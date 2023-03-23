@@ -12,8 +12,7 @@ const Quan = () => {
   }
 
   return (
-    <div>
-      <div className="dropdown">
+      <div className="dropdown" style={{height: '100%'}}>
         <button
           className="btn btn-light dropdown-toggle danhsach_quan-btn"
           type="button"
@@ -36,7 +35,6 @@ const Quan = () => {
           }
         </ul>
       </div>
-    </div>
   );
 };
 

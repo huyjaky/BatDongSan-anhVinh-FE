@@ -8,8 +8,7 @@ import ErrorPage from './components/errorPage/ErrorPage';
 import Navbar from './components/nav/Navbar';
 import Homepage from './features/Homepage/Homepage';
 import Login from './features/Loginpage/Homepage';
-import FormKhachMua from './features/Uploadpage/InputUpload/formKhachMua/FormKhachMua';
-import FormKhachThue from './features/Uploadpage/InputUpload/formKhachThue/FormKhachThue';
+import FormKhach from './features/Uploadpage/InputUpload/formKhach/FormKhach';
 import Upload from './features/Uploadpage/Upload';
 import { setLogIn } from './store/actions/Log';
 import { getIsLogIn } from './store/Selector';
@@ -29,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={{backgroundColor: 'grey'}}>
         <Navbar />
         <header className="App-header">
           <Routes>
@@ -39,9 +38,12 @@ function App() {
                 <Route path="/homepage" element={<Homepage />} />
                 <Route path="/news" element={<Homepage />} />
                 <Route path="/upload" element={<Upload />} >
-                  <Route path="/upload/khachthue" element={<FormKhachThue />} />
-                  <Route path='/upload/khachmua' element={<FormKhachMua />} />
-                  <Route path="/upload/" element={<FormKhachThue />} />
+                  <Route path="/upload/khachthue" element={<FormKhach Donvi={'Trieu'} />} />
+                  <Route path='/upload/khachmua' element={<FormKhach Donvi={'Ty'}/>} />
+                  <Route path='/upload/khachban' element={<FormKhach Donvi={'Ty'}/>} />
+                  <Route path='/upload/khachchothue' element={<FormKhach Donvi={'Trieu'}/>} />
+
+                  <Route path="/upload/" element={<FormKhach Donvi={'Trieu'} />} />
                 </Route>
               </>
             ) : (

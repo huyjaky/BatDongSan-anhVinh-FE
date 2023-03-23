@@ -13,17 +13,16 @@ const Phuong = () => {
 
 
   return (
-    <div>
-      <div className="dropdown">
+      <div className="dropdown" style={{height: '100%'}}>
         <button
-          className="btn btn-light dropdown-toggle  danhsach_phuong-btn"
+          className="btn btn-light dropdown-toggle danhsach_phuong-btn"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
           {select}
         </button>
-        <ul className="dropdown-menu" style={{ width: '100%' }}>
+        <ul className="dropdown-menu form-select" required style={{ width: '100%', height: '60vh', overflow: 'scroll'}}>
           {phuong &&
             phuong.map((item, index) => {
               return (
@@ -37,7 +36,6 @@ const Phuong = () => {
           }
         </ul>
       </div>
-    </div>
   );
 };
 

@@ -13,10 +13,10 @@ import axios from 'axios';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
 import InputUpload from './InputUpload/InputUpload';
-import { InfinitySpin } from 'react-loader-spinner';
 
 
 // Register the plugins
@@ -32,6 +32,7 @@ function Upload() {
     fetchData();
     setIsLoading(false)
   }, [])
+
 
   const fetchData = async () => {
     let data = await axios.get('http://localhost:4000/api/phuongquan');
@@ -76,6 +77,7 @@ function Upload() {
             'image/x-icon',
             'application/pdf'
           ]}
+
         />
       </div>
     </>

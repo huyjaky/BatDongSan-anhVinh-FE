@@ -1,35 +1,26 @@
 import Phuong from '../../../../components/phuong_quan/phuong/Phuong';
 import Quan from '../../../../components/phuong_quan/quan/Quan';
+import PropTypes from 'prop-types';
 import './Style.scss';
 
-const FormKhachThue = () => {
+const FormKhach = (props) => {
+
+  const {Donvi} = props;
+
   return (
-    <div className="form_khachthue">
+    <form className="form_khach" method='post' action='/upoad/'>
       <div className="input-group mb-3">
         <input type="text" className="form-control" placeholder="Ten Khach" aria-label="Username" />
         <span className="input-group-text">@</span>
-        <input type="tel" className="form-control" placeholder="Sdt" aria-label="Server" />
+        <input  type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" className="form-control" name='Sdt' placeholder="Sdt" aria-label="Server" required />
       </div>
 
       <div className="input-group mb-3 diachi">
-        <input type="text" className="form-control" placeholder="Ten Duong" aria-label="Username" />
+        <input required name='TenDuong' type="text" className="form-control" placeholder="Ten Duong" aria-label="Username" />
         <div className="danhsach_quanhuyen">
           <Quan />
           <Phuong />
         </div>
-      </div>
-
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Gmail Khach"
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-        />
-        <span className="input-group-text" id="basic-addon2">
-          @gmail.com
-        </span>
       </div>
 
       <div className="mb-3">
@@ -52,16 +43,26 @@ const FormKhachThue = () => {
 
       <div className="input-group mb-3">
         <span className="input-group-text">VND</span>
-        <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
-        <span className="input-group-text">Trieu</span>
+        <input type="number" name='TaiChinh' className="form-control" required aria-label="Amount (to the nearest dollar)" />
+        <span className="input-group-text">{Donvi}</span>
       </div>
 
       <div className="input-group">
         <span className="input-group-text">Nhu Cau Chi Tiet</span>
-        <textarea className="form-control" aria-label="With textarea"></textarea>
+        <textarea className="form-control" required name='NhuCau'  aria-label="With textarea"></textarea>
       </div>
-    </div>
+
+      <div className='submit_form'>
+        <button className='btn btn-primary' style={{width: '100%'}}>Submit</button>
+        *Cac form khach mua, khach thue thi khong tai anh len duoc (cai nay fix sau)
+      </div>
+    </form>
   );
 };
 
-export default FormKhachThue;
+export default FormKhach;
+
+
+FormKhach.propTypes = {
+  Donvi: PropTypes.string
+}
