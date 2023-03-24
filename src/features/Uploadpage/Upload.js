@@ -17,6 +17,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
 import InputUpload from './InputUpload/InputUpload';
+import { useParams } from 'react-router-dom';
 
 
 // Register the plugins
@@ -33,6 +34,7 @@ function Upload() {
     setIsLoading(false)
   }, [])
 
+  console.log(useParams());
 
   const fetchData = async () => {
     let data = await axios.get('http://localhost:4000/api/phuongquan');
@@ -64,7 +66,7 @@ function Upload() {
           allowMultiple={true}
           maxFiles={30}
           maxParallelUploads={30}
-          server="http://localhost:4000/api/img"
+          server="http://localhost:4000/api/khach"
           name="files" /* sets the file input name, it's filepond by default */
           labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
           acceptedFileTypes={[

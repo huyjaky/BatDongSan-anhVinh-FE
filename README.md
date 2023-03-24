@@ -90,3 +90,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 "sass": "^1.59.3",
 "web-vitals": "^2.1.4"
 },
+
+.env command:
+GENERATE_SOURCEMAP=false
