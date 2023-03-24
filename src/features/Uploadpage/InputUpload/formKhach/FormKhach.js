@@ -12,7 +12,7 @@ const FormKhach = (props) => {
       <div className="input-group mb-3">
         <input type="text" className="form-control" placeholder="Ten Khach" aria-label="Username" />
         <span className="input-group-text">@</span>
-        <input  type="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" className="form-control" name='Sdt' placeholder="Sdt" aria-label="Server" required />
+        <input type="number" className="form-control" name='Sdt' placeholder="Sdt" aria-label="Server" required />
       </div>
 
       <div className="input-group mb-3 diachi">
