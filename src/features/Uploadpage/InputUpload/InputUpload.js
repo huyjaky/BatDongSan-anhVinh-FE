@@ -12,7 +12,7 @@ const InputUpload = (props) => {
 
   const handleOnClick = (khach) => {
     dispatch(setLoaiKhach(khach));
-  }
+  };
 
   return (
     <div style={{ width: '100%', height: '100%' }} className=" dropdown_inp">
@@ -74,5 +74,4 @@ const InputUpload = (props) => {
 
 export default InputUpload;
 
-InputUpload.propTypes = {
-}
+InputUpload.propTypes = {};

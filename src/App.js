@@ -4,16 +4,20 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Navbar from './components/nav/Navbar';
 import Homepage from './features/Homepage/Homepage';
+import KhachBan from './features/Homepage/khachFilter/khachban';
+import KhachChoThue from './features/Homepage/khachFilter/khachchothue';
+import KhachMua from './features/Homepage/khachFilter/khachmua';
+import KhachThue from './features/Homepage/khachFilter/khachthue';
 import Login from './features/Loginpage/Homepage';
 import FormKhach from './features/Uploadpage/InputUpload/formKhach/FormKhach';
 import Upload from './features/Uploadpage/Upload';
 import { setLogIn } from './store/actions/Log';
 import { getIsLogIn } from './store/Selector';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,11 +34,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App" style={{ backgroundColor: 'grey' }}>
+      <div className="App">
         <Navbar />
         <ToastContainer
           position="top-center"
-          autoClose={3000}
+          autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -49,8 +53,12 @@ function App() {
             <Route path="/" element={<Login />} />
             {isLoggedIn ? (
               <>
-                <Route path="/homepage" element={<Homepage />} />
-                <Route path="/news" element={<Homepage />} />
+                <Route path="/homepage" element={<Homepage />}>
+                  <Route path="/homepage/khachthue" element={<KhachThue />} />
+                  <Route path="/homepage/khachban" element={<KhachBan />} />
+                  <Route path="/homepage/khachchothue" element={<KhachChoThue />} />
+                  <Route path="/homepage/khachmua" element={<KhachMua />} />
+                </Route>
                 <Route path="/upload" element={<Upload />}>
                   <Route path="/upload/khachthue" element={<FormKhach Donvi={'Trieu'} />} />
                   <Route path="/upload/khachmua" element={<FormKhach Donvi={'Ty'} />} />
@@ -65,7 +73,6 @@ function App() {
             )}
           </Routes>
         </header>
-
       </div>
     </BrowserRouter>
   );

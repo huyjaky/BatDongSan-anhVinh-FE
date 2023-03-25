@@ -1,0 +1,33 @@
+.khach {
+  width: 700px;
+  height: 400px;
+  margin: 40px;
+
+  .container {
+    padding: 0px;
+    .img-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      z-index: 500;
+
+    }
+  }
+
+  .tempty-container {
+    width: 100%;
+    text-align: center;
+    background-color: mediumaquamarine;
+  }
+}
+
+.link-text {
+  text-decoration: none;
+  color: white;
+}
+

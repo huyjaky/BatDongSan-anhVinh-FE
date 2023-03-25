@@ -14,7 +14,7 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import { InfinitySpin } from 'react-loader-spinner';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
 import InputUpload from './InputUpload/InputUpload';
@@ -26,6 +26,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 function Upload() {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [reRender, setReRender] = useState()
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,34 +54,44 @@ function Upload() {
   return (
     <>
       <InputUpload />
-      <div
-        className="file-pond"
-        style={{ width: '40%', height: '100%', marginTop: '5vh', zIndex: '0' }}
-      >
-        <FilePond
-          files={files}
-          onupdatefiles={setFiles}
-          allowMultiple={true}
-          maxFiles={30}
-          maxParallelUploads={30}
-          server="http://localhost:4000/api/img"
-          name="files" /* sets the file input name, it's filepond by default */
-          labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
-          acceptedFileTypes={[
-            'image/jpeg',
-            'image/png',
-            'image/gif',
-            'image/bmp',
-            'image/svg+xml',
-            'image/webp',
-            'image/tiff',
-            'image/x-icon',
-            'application/pdf'
-          ]}
-          onremovefile={(file) => {
-            console.log(file);
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <div
+          className="file-pond"
+          style={{
+            width: '50%',
+            height: '100%',
+            marginTop: '5vh',
+            zIndex: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'center'
           }}
-        />
+        >
+          <FilePond
+            files={files}
+            onupdatefiles={setFiles}
+            allowMultiple={true}
+            maxFiles={30}
+            maxParallelUploads={30}
+            server="http://localhost:4000/api/img"
+            name="files" /* sets the file input name, it's filepond by default */
+            labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
+            acceptedFileTypes={[
+              'image/jpeg',
+              'image/png',
+              'image/gif',
+              'image/bmp',
+              'image/svg+xml',
+              'image/webp',
+              'image/tiff',
+              'image/x-icon',
+              'application/pdf'
+            ]}
+            onremovefile={(file) => {
+              console.log(file);
+            }}
+          />
+        </div>
       </div>
     </>
   );

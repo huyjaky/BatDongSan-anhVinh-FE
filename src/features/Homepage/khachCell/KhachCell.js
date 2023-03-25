@@ -1,47 +1,52 @@
-// import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y, EffectFlip, Keyboard } from 'swiper';
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
+import PropTypes from 'prop-types';
 import './Style.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-
-
-const KhachCell = () => {
+const KhachCell = (props) => {
+  const { arrHinh } = props
 
   return (
     <>
-      <div style={{ width: '100vw', height: '60vh' }}>
-        <Swiper
-          style={{width: '100%', height: '100%'}}
-          slidesPerView={1}
-          spaceBetween={30}
-          keyboard={{
-            enabled: true,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[Keyboard, Pagination, Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
-        </Swiper>
+      <div className="khach">
+        <AwesomeSlider animation="cubeAnimation" >
+          {arrHinh && arrHinh.length > 0 ?
+            arrHinh.map((item, index) => {
+              return (
+                <div className='container' key={index} style={{ borderRadius: '40px' }}>
+                  <img src={`http://localhost:4000/api/img/path/${item.Hinh}`} alt='mota'></img>
+                  <div className='img-text'>
+                    <Link to='#' className='link-text'>
+                      Chi Tiet
+                    </Link>
+                  </div>
+                </div>
+
+              )
+            })
+            :
+            <div className='text-light tempty-container' style={{ borderRadius: '40px' }}>
+                Empty
+              <div className='img-text'>
+                <Link to='#' className='link-text'>
+                  Chi Tiet
+                </Link>
+              </div>
+            </div>
+          }
+        </AwesomeSlider>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default KhachCell;
+
+KhachCell.propTypes = {
+  arrHinh: PropTypes.arrayOf(
+    PropTypes.shape({
+      Hinh: PropTypes.string
+    })
+  )
+};

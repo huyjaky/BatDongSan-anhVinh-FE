@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { setLoaiKhach, setPhuongSelect, setQuanSelect } from '../../../../store/actions/Log';
+import { setLoaiKhach, setPhuongSelect, setQuanSelect, setReRender, setTenPhuong, setTenQuan } from '../../../../store/actions/Log';
 import { getLoaiKhach, getPhuongSelect, getQuanSelect } from '../../../../store/Selector';
 import Phuong from '../phuong_quan/phuong/Phuong';
 import Quan from '../phuong_quan/quan/Quan';
@@ -22,18 +22,22 @@ const FormKhach = (props) => {
   const loaikhach = useSelector(getLoaiKhach); //
   const dispatch = useDispatch();
 
-
   const { Donvi } = props;
   const handleOnClick = async () => {
-    if (
-      loaikhach === 'Loai Khach'
-    ) {
+    if (loaikhach === 'Loai Khach') {
       toast.warning('Vui Long Chon Loai Khach!');
-
-    } else if (!TenKhach || !Sdt || !TenDuong || !TaiChinh || !NhuCauChiTiet || !phuongSelect || !quanSelect
-      || phuongSelect === 'Phuong' || quanSelect === 'Quan') {
+    } else if (
+      !TenKhach ||
+      !Sdt ||
+      !TenDuong ||
+      !TaiChinh ||
+      !NhuCauChiTiet ||
+      !phuongSelect ||
+      !quanSelect ||
+      phuongSelect === 'Phuong' ||
+      quanSelect === 'Quan'
+    ) {
       toast.warning('Nhap Thieu Thong Tin Cua Khach Vui Long Kiem Tra Lai!');
-
     } else {
       try {
         toast.loading('Data is loading');
@@ -46,14 +50,14 @@ const FormKhach = (props) => {
           TaiChinh: TaiChinh,
           NhuCauChiTiet: NhuCauChiTiet,
           MaPhuong: phuongSelect,
-          MaQuan: quanSelect,
+          MaQuan: quanSelect
         });
         toast.dismiss();
         if (response.data === 'finish') {
           toast.success('Upload Successful!');
           dispatch(setLoaiKhach('Loai Khach'));
-          dispatch(setPhuongSelect('Phuong'));
-          dispatch(setQuanSelect('Quan'));
+          dispatch(setTenPhuong('Phuong'));
+          dispatch(setTenQuan('Quan'));
           setTenKhach('');
           setSdt('');
           setTenDuong('');
@@ -68,7 +72,7 @@ const FormKhach = (props) => {
         console.log(error);
       }
     }
-  }
+  };
 
   return (
     <form className="form_khach" method="get" action="/upoad/">
@@ -112,7 +116,7 @@ const FormKhach = (props) => {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="basic-url" className="form-label">
+        <label htmlFor="basic-url" className="form-label text-light">
           Link Face
         </label>
         <div className="input-group">
@@ -141,7 +145,6 @@ const FormKhach = (props) => {
           aria-label="Amount (to the nearest dollar)"
           value={TaiChinh}
           onChange={(event) => setTaiChinh(event.target.value)}
-
         />
         <span className="input-group-text">{Donvi}</span>
       </div>
@@ -159,7 +162,12 @@ const FormKhach = (props) => {
       </div>
 
       <div className="submit_form" style={{ marginTop: '20px' }}>
-        <button className="btn btn-primary" style={{ width: '100%' }} type="button" onClick={handleOnClick}>
+        <button
+          className="btn btn-primary"
+          style={{ width: '100%' }}
+          type="button"
+          onClick={handleOnClick}
+        >
           Submit
         </button>
       </div>
@@ -170,5 +178,5 @@ const FormKhach = (props) => {
 export default FormKhach;
 
 FormKhach.propTypes = {
-  Donvi: PropTypes.string,
+  Donvi: PropTypes.string
 };

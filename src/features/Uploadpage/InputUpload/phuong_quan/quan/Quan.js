@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setQuanSelect } from '../../../../../store/actions/Log';
-import { getQuan } from '../../../../../store/Selector';
+import { setQuanSelect, setTenQuan } from '../../../../../store/actions/Log';
+import { getQuan, getTenQuan } from '../../../../../store/Selector';
 import './Style.scss';
 
 const Quan = () => {
   const quan = useSelector(getQuan);
-  const [select, setSelect] = useState('Quan');
+  const tenquan = useSelector(getTenQuan);
   const dispatch = useDispatch();
 
   const handleOnClick = async (item) => {
-    await setSelect(item.TenQuan);
+    dispatch(setTenQuan(item.TenQuan));
     dispatch(setQuanSelect(item.MaQuan));
   };
 
@@ -22,18 +22,14 @@ const Quan = () => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        {select}
+        {tenquan}
       </button>
       <ul className="dropdown-menu" style={{ width: '100%' }}>
         {quan &&
           quan.map((item, index) => {
             return (
               <li key={index}>
-                <a
-                  className="dropdown-item"
-                  href="#"
-                  onClick={(event) => handleOnClick(item)}
-                >
+                <a className="dropdown-item" href="#" onClick={(event) => handleOnClick(item)}>
                   {item.TenQuan}
                 </a>
               </li>
