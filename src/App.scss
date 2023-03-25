@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.Toastify__toast-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

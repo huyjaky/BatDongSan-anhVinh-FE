@@ -6,6 +6,7 @@
 
     .danhsach_quanhuyen {
       display: flex;
+
       .danhsach_phuong {
         width: 100%;
 
@@ -20,4 +21,8 @@
   .diachi>* {
     flex: 1;
   }
+}
+
+.Toastify__toast {
+  width: 30vw;
 }

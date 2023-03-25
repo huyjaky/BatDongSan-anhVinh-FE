@@ -8,7 +8,7 @@ const composeEnchancers = composeWithDevTools();
 const rootReducer = combineReducers({
   InputUploadReducer,
   LoginReducer
-})
+});
 
 const store = createStore(rootReducer, composeEnchancers);
 

@@ -1,7 +1,10 @@
 const initState = {
   phuong: [],
   quan: [],
-  phuongquan: []
+  phuongquan: [],
+  phuongSelect: 'Phuong',
+  quanSelect: 'Quan',
+  loaikhach: 'Loai Khach',
 };
 
 const InputUploadReducer = (state = initState, action) => {
@@ -21,6 +24,21 @@ const InputUploadReducer = (state = initState, action) => {
         ...state,
         phuongquan: action.payload
       };
+    case 'SET_PHUONGSELECT':
+      return {
+        ...state,
+        phuongSelect: action.payload
+      };
+    case 'SET_LOAIKHACH':
+      return {
+        ...state,
+        loaikhach: action.payload
+      };
+    case 'SET_QUANSELECT':
+      return {
+        ...state,
+        quanSelect: action.payload
+      }
     default:
       return state;
   }

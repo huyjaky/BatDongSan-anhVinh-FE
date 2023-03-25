@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.scss';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Navbar from './components/nav/Navbar';
@@ -12,6 +13,7 @@ import FormKhach from './features/Uploadpage/InputUpload/formKhach/FormKhach';
 import Upload from './features/Uploadpage/Upload';
 import { setLogIn } from './store/actions/Log';
 import { getIsLogIn } from './store/Selector';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,8 +30,20 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App" style={{backgroundColor: 'grey'}}>
+      <div className="App" style={{ backgroundColor: 'grey' }}>
         <Navbar />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <header className="App-header">
           <Routes>
             <Route path="/" element={<Login />} />
@@ -37,11 +51,11 @@ function App() {
               <>
                 <Route path="/homepage" element={<Homepage />} />
                 <Route path="/news" element={<Homepage />} />
-                <Route path="/upload" element={<Upload />} >
+                <Route path="/upload" element={<Upload />}>
                   <Route path="/upload/khachthue" element={<FormKhach Donvi={'Trieu'} />} />
-                  <Route path='/upload/khachmua' element={<FormKhach Donvi={'Ty'}/>} />
-                  <Route path='/upload/khachban' element={<FormKhach Donvi={'Ty'}/>} />
-                  <Route path='/upload/khachchothue' element={<FormKhach Donvi={'Trieu'}/>} />
+                  <Route path="/upload/khachmua" element={<FormKhach Donvi={'Ty'} />} />
+                  <Route path="/upload/khachban" element={<FormKhach Donvi={'Ty'} />} />
+                  <Route path="/upload/khachchothue" element={<FormKhach Donvi={'Trieu'} />} />
 
                   <Route path="/upload/" element={<FormKhach Donvi={'Trieu'} />} />
                 </Route>
@@ -51,6 +65,7 @@ function App() {
             )}
           </Routes>
         </header>
+
       </div>
     </BrowserRouter>
   );

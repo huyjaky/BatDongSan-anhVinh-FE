@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Import React FilePond
 import { FilePond, registerPlugin } from 'react-filepond';
@@ -15,10 +15,9 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
 import InputUpload from './InputUpload/InputUpload';
-import { useParams } from 'react-router-dom';
-
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -31,8 +30,8 @@ function Upload() {
 
   useEffect(() => {
     fetchData();
-    setIsLoading(false)
-  }, [])
+    setIsLoading(false);
+  }, []);
 
   console.log(useParams());
 
@@ -41,20 +40,18 @@ function Upload() {
     await dispatch(setPhuong(data.data.phuong));
     await dispatch(setQuan(data.data.quan));
     await dispatch(setPhuongQuan(data.data.phuongquan));
-  }
+  };
 
   if (isLoading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <InfinitySpin width="200" color="#4fa94d" />
       </div>
-    )
+    );
   }
-
 
   return (
     <>
-
       <InputUpload />
       <div
         className="file-pond"
@@ -66,7 +63,7 @@ function Upload() {
           allowMultiple={true}
           maxFiles={30}
           maxParallelUploads={30}
-          server="http://localhost:4000/api/khach"
+          server="http://localhost:4000/api/img"
           name="files" /* sets the file input name, it's filepond by default */
           labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
           acceptedFileTypes={[
@@ -80,10 +77,12 @@ function Upload() {
             'image/x-icon',
             'application/pdf'
           ]}
+          onremovefile={(file) => {
+            console.log(file);
+          }}
         />
       </div>
     </>
   );
 }
 export default Upload;
-
