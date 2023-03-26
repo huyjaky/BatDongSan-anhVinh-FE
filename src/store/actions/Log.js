@@ -93,9 +93,8 @@ export const setKhachDetail = (current) => {
   };
 };
 
-
 export const setRe = () => {
   return {
     type: 'SET_RE'
-  }
-}
+  };
+};

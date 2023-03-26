@@ -4,6 +4,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import { setKhachBan, setKhachChoThue, setKhachMua, setKhachThue } from '../../store/actions/Log';
+import Filter from './filter/Filter';
 import './Style.scss';
 
 const Homepage = () => {
@@ -93,6 +94,20 @@ const Homepage = () => {
               </Link>
             </li>
           </ul>
+          {/* hoan thien phan bo loc tai day */}
+          <div className='filter-container'>
+            <button
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#modalFilter"
+              style={{
+                width: '60%', backgroundColor: 'transparent',
+                marginTop: '20px'
+              }} >
+              Filter
+            </button>
+            <Filter />
+          </div>
         </div>
       </div>
       <Outlet />

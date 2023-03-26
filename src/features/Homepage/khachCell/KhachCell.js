@@ -15,23 +15,24 @@ const KhachCell = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async() => {
-      await dispatch(setKhachDetail({
-        khach: {
-          TenKhach: arrKhach[select].TenKhach,
-          TaiChinh: arrKhach[select].TaiChinh,
-          Sdt: arrKhach[select].Sdt,
-          NhuCauChiTiet: arrKhach[select].NhuCauChiTiet,
-          NgayDang: arrKhach[select].NgayDang,
-          MaKhach: arrKhach[select].MaKhach,
-          Linkface: arrKhach[select].Linkface
-        },
-        hinh: arrHinh[select],
-      }))
-    }
+    const fetchData = async () => {
+      await dispatch(
+        setKhachDetail({
+          khach: {
+            TenKhach: arrKhach[select].TenKhach,
+            TaiChinh: arrKhach[select].TaiChinh,
+            Sdt: arrKhach[select].Sdt,
+            NhuCauChiTiet: arrKhach[select].NhuCauChiTiet,
+            NgayDang: arrKhach[select].NgayDang,
+            MaKhach: arrKhach[select].MaKhach,
+            Linkface: arrKhach[select].Linkface
+          },
+          hinh: arrHinh[select]
+        })
+      );
+    };
     fetchData();
-  }, [select])
-
+  }, [select]);
 
   return (
     <>
@@ -75,20 +76,20 @@ const KhachCell = (props) => {
                     <div className="text-light empty-container" style={{ borderRadius: '40px' }}>
                       Empty
                       <div className="img-text">
-                        <Link to="#" >
-                              <button
-                                className="img-text-temp"
-                                value={count}
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                onClick={(event) => setSelect(event.target.value)}
-                              >
-                                {arrKhach[count].diachi.TenDuong +
-                                  ', ' +
-                                  arrKhach[count].diachi.quan.TenQuan +
-                                  ', ' +
-                                  arrKhach[count].diachi.phuong.TenPhuong}
-                              </button>
+                        <Link to="#">
+                          <button
+                            className="img-text-temp"
+                            value={count}
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            onClick={(event) => setSelect(event.target.value)}
+                          >
+                            {arrKhach[count].diachi.TenDuong +
+                              ', ' +
+                              arrKhach[count].diachi.quan.TenQuan +
+                              ', ' +
+                              arrKhach[count].diachi.phuong.TenPhuong}
+                          </button>
                         </Link>
                       </div>
                     </div>

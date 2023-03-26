@@ -7,7 +7,7 @@ const initState = {
   loaikhach: 'Loai Khach',
   tenphuong: 'Phuong',
   tenquan: 'Quan',
-  reRender: true,
+  reRender: true
 };
 
 const InputUploadReducer = (state = initState, action) => {
@@ -16,7 +16,7 @@ const InputUploadReducer = (state = initState, action) => {
       return {
         ...state,
         reRender: !action.payload
-      }
+      };
     case 'SET_PHUONG':
       return {
         ...state,
