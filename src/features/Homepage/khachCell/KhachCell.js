@@ -14,8 +14,6 @@ const KhachCell = (props) => {
   const [select, setSelect] = useState(0);
   const dispatch = useDispatch();
 
-
-
   useEffect(() => {
     const khach_select = async (event) => {
       await dispatch(setKhachDetail({
