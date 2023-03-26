@@ -15,14 +15,23 @@ const KhachCell = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const khach_select = async (event) => {
+    const fetchData = async() => {
       await dispatch(setKhachDetail({
-        khach: arrKhach[select],
-        hinh: arrHinh[select]
+        khach: {
+          TenKhach: arrKhach[select].TenKhach,
+          TaiChinh: arrKhach[select].TaiChinh,
+          Sdt: arrKhach[select].Sdt,
+          NhuCauChiTiet: arrKhach[select].NhuCauChiTiet,
+          NgayDang: arrKhach[select].NgayDang,
+          MaKhach: arrKhach[select].MaKhach,
+          Linkface: arrKhach[select].Linkface
+        },
+        hinh: arrHinh[select],
       }))
     }
-    khach_select();
+    fetchData();
   }, [select])
+
 
   return (
     <>
@@ -66,18 +75,20 @@ const KhachCell = (props) => {
                     <div className="text-light empty-container" style={{ borderRadius: '40px' }}>
                       Empty
                       <div className="img-text">
-                        <Link
-                          to="#"
-                          className="link-text"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                          onClick={(event) => setSelect(event.target.value)}
-                        >
-                          {arrKhach[count].diachi.TenDuong +
-                            ', ' +
-                            arrKhach[count].diachi.quan.TenQuan +
-                            ', ' +
-                            arrKhach[count].diachi.phuong.TenPhuong}
+                        <Link to="#" >
+                              <button
+                                className="img-text-temp"
+                                value={count}
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onClick={(event) => setSelect(event.target.value)}
+                              >
+                                {arrKhach[count].diachi.TenDuong +
+                                  ', ' +
+                                  arrKhach[count].diachi.quan.TenQuan +
+                                  ', ' +
+                                  arrKhach[count].diachi.phuong.TenPhuong}
+                              </button>
                         </Link>
                       </div>
                     </div>
@@ -86,7 +97,7 @@ const KhachCell = (props) => {
               </div>
             );
           })}
-        <DetailHouse arrKhach={arrKhach} arrHinh={arrHinh} />
+        <DetailHouse />
       </div>
     </>
   );
@@ -104,7 +115,7 @@ KhachCell.propTypes = {
       NhuCauChiTiet: PropTypes.string,
       Sdt: PropTypes.string,
       TaiChinh: PropTypes.string,
-      TenKhachThue: PropTypes.string,
+      TenKhach: PropTypes.string,
       diachi: PropTypes.shape({
         MaPhuong: PropTypes.string,
         MaQuan: PropTypes.string,

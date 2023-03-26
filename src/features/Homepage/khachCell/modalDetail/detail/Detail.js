@@ -1,11 +1,15 @@
 import { useSelector } from 'react-redux';
-import { getkhachDetail } from '../../../../../store/Selector';
 import AwesomeSlider from 'react-awesome-slider';
 import './Style.scss';
+import { getKhachDetail } from '../../../../../store/Selector';
+import { useEffect } from 'react';
 
 
 const Detail = () => {
-  const khach = useSelector(getkhachDetail);
+  const khach = useSelector(getKhachDetail);
+  useEffect(()=>{
+    
+  }, [khach])
   return (
     <div className='img-detail'>
       <AwesomeSlider animation="cubeAnimation" >

@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import moment from "moment/moment";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getkhachDetail } from "../../../../store/Selector";
+import { getKhachDetail } from "../../../../store/Selector";
 import Detail from "./detail/Detail";
 
 const DetailHouse = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const khach = useSelector(getkhachDetail);
+  const khach = useSelector(getKhachDetail);
+
+  useEffect(() => {
+    console.log(khach);
+  }, [khach])
 
   return (
     <div>
@@ -21,7 +25,7 @@ const DetailHouse = () => {
             </div>
 
             <div className="modal-footer">
-              <div style={{width: '100%'}}>
+              <div style={{ width: '100%' }}>
 
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                   <div className="accordion-item">
@@ -30,8 +34,37 @@ const DetailHouse = () => {
                         #Thong Tin
                       </button>
                     </h2>
+
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
 
+                      {khach && khach.khach ?
+                        <>
+                          <div className="input-group">
+                            <span type="text" className="form-control" placeholder="Username" aria-label="Username">{khach.khach.MaKhach}</span>
+                            <span className="input-group-text">@</span>
+                            <span type="text" className="form-control" placeholder="Server" aria-label="Server">{moment(khach.khach.NgayDang).format('DD/MM/YY HH:mm')}</span>
+                          </div>
+                          <div className="input-group">
+                            <span className="input-group-text" id="basic-addon1">@Ten Khach</span>
+                            <span type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">{khach.khach.TenKhach}</span>
+                            <span className="input-group-text" id="basic-addon1">@Sdt</span>
+                            <span type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">{khach.khach.Sdt}</span>
+                          </div>
+                          <div className="input-group">
+                            <span className="input-group-text">$</span>
+                            <span type="text" className="form-control" aria-label="Amount (to the nearest dollar)">{khach.khach.TaiChinh}</span>
+                            <span className="input-group-text">.00</span>
+                            <span className="input-group-text" id="basic-addon1">@Linkface</span>
+                            <span type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">{khach.khach.Linkface}</span>
+                          </div>
+                          <div className="input-group">
+                            <span className="input-group-text">@Nhu Cau Chi Tiet</span>
+                            <span type="text" className="form-control" placeholder="Server" aria-label="Server">{khach.khach.NhuCauChiTiet}</span>
+                          </div>
+                        </>
+                        :
+                        console.log('error')
+                      }
                     </div>
                   </div>
                 </div>
