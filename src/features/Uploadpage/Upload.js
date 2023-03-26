@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
 import InputUpload from './InputUpload/InputUpload';
+import { getRe } from '../../store/Selector';
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -26,13 +27,13 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 function Upload() {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [reRender, setReRender] = useState();
   const dispatch = useDispatch();
+  const re = useSelector(getRe);
 
   useEffect(() => {
     fetchData();
     setIsLoading(false);
-  }, []);
+  }, [re]);
 
   console.log(useParams());
 
@@ -68,6 +69,7 @@ function Upload() {
           }}
         >
           <FilePond
+            className={`${re}`}
             files={files}
             onupdatefiles={setFiles}
             allowMultiple={true}

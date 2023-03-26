@@ -4,11 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
-  setLoaiKhach,
-  setPhuongSelect,
-  setQuanSelect,
-  setReRender,
-  setTenPhuong,
+  setLoaiKhach, setRe, setTenPhuong,
   setTenQuan
 } from '../../../../store/actions/Log';
 import { getLoaiKhach, getPhuongSelect, getQuanSelect } from '../../../../store/Selector';
@@ -71,6 +67,8 @@ const FormKhach = (props) => {
           setLinkface('');
           setTaiChinh('');
           setNhuCauChiTiet('');
+          dispatch(setRe());
+
         } else if (response.data === 'error') {
           toast.warn('Error: co loi say ra!');
         }

@@ -92,3 +92,10 @@ export const setKhachDetail = (current) => {
     payload: current
   };
 };
+
+
+export const setRe = () => {
+  return {
+    type: 'SET_RE'
+  }
+}
