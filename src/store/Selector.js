@@ -15,3 +15,4 @@ export const getKhachMua = (state) => state.KhachReducer.khachmua;
 export const getKhachBan = (state) => state.KhachReducer.khachban;
 export const getKhachThue = (state) => state.KhachReducer.khachthue;
 export const getKhachChoThue = (state) => state.KhachReducer.khachchothue;
+export const getkhachDetail = (state) => state.KhachReducer.khachdetail;

@@ -26,7 +26,7 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 function Upload() {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [reRender, setReRender] = useState()
+  const [reRender, setReRender] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -19,7 +19,7 @@ const Homepage = () => {
   const fetchData = async () => {
     try {
       const allkhach = await axios.get('http://localhost:4000/api/getallkhach');
-      await dispatch(setKhachThue(allkhach.data.khachthue))
+      await dispatch(setKhachThue(allkhach.data.khachthue));
       await dispatch(setKhachMua(allkhach.data.khachmua));
       await dispatch(setKhachChoThue(allkhach.data.khachchothue));
       await dispatch(setKhachBan(allkhach.data.khachban));

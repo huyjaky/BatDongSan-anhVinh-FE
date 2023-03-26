@@ -15,7 +15,7 @@ const initState = {
     khachchothue: [],
     imgkhachchothue: []
   },
-  
+  khachdetail: {}
 };
 
 const KhachReducer = (state = initState, action) => {
@@ -40,10 +40,14 @@ const KhachReducer = (state = initState, action) => {
         ...state,
         khachchothue: action.payload
       };
+    case 'SET_KHACHDETAIL':
+      return {
+        ...state,
+        khachdetail: action.payload
+      };
     default:
       return state;
   }
 };
 
 export default KhachReducer;
-

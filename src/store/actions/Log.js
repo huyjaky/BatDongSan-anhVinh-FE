@@ -51,39 +51,44 @@ export const setKhachThue = (current) => {
   return {
     type: 'SET_KHACHTHUE',
     payload: current
-  }
+  };
 };
 export const setKhachMua = (current) => {
   return {
     type: 'SET_KHACHMUA',
     payload: current
-  }
+  };
 };
 export const setKhachBan = (current) => {
   return {
     type: 'SET_KHACHBAN',
     payload: current
-  }
+  };
 };
 export const setKhachChoThue = (current) => {
   return {
     type: 'SET_KHACHCHOTHUE',
     payload: current
-  }
+  };
 };
-
-
 
 export const setTenQuan = (current) => {
   return {
     type: 'SET_TENQUAN',
     payload: current
-  }
-}
+  };
+};
 
 export const setTenPhuong = (current) => {
   return {
     type: 'SET_TENPHUONG',
     payload: current
-  }
-}
+  };
+};
+
+export const setKhachDetail = (current) => {
+  return {
+    type: 'SET_KHACHDETAIL',
+    payload: current
+  };
+};

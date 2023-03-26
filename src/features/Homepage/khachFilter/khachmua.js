@@ -4,17 +4,7 @@ import { getKhachMua } from '../../../store/Selector';
 
 const KhachMua = (props) => {
   const khachmua = useSelector(getKhachMua);
-  return (
-    <div className="showKhach">
-      {khachmua.imgKhachMua &&
-        khachmua.imgKhachMua.map((item, index) => {
-          return (
-            <KhachCell key={index} arrHinh={item}/>
-          )
-        })
-      }
-    </div>
-  );
+  return <KhachCell arrKhach={khachmua.khachmua} arrHinh={khachmua.imgKhachMua} />;
 };
 
 export default KhachMua;
