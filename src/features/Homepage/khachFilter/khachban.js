@@ -54,6 +54,7 @@ const KhachBan = () => {
             arrKhach = [...arrKhach, item];
           }
         });
+        console.log(arrKhach);
         setArrKhach(arrKhach);
         setArrHinh(arrHinh);
       }
