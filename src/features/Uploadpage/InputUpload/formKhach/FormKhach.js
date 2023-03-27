@@ -40,7 +40,7 @@ const FormKhach = (props) => {
       !quanSelect ||
       !SoPhongVeSinh ||
       !SoPhongNgu ||
-      !phuongSelect === 'Phuong' ||
+      phuongSelect === 'Phuong' ||
       quanSelect === 'Quan'
     ) {
       toast.warning('Nhap Thieu Thong Tin Cua Khach Vui Long Kiem Tra Lai!');
@@ -185,12 +185,10 @@ const FormKhach = (props) => {
         aria-label="Default select example"
         style={{ marginBottom: '20px' }}
         onClick={(event) => setTheLoai(event.target.value)}
-        defaultValue='Can Ho'
+        defaultValue="Can Ho"
       >
         <option value="Can Ho">Can Ho</option>
-        <option value="Nguyen Can">
-          Nguyen Can
-        </option>
+        <option value="Nguyen Can">Nguyen Can</option>
       </select>
 
       <div className="input-group">

@@ -6,3 +6,12 @@
   }
 
 }
+
+.phuong_quan-container {
+  display: flex;
+  width: 100%;
+}
+
+.phuong_quan-container > *{
+  flex: 1
+}

@@ -2,8 +2,8 @@ const initState = {
   priceRange: 500,
   DonVi: 'Ty',
   TheLoai: 'Can Ho',
-  SoPhongNgu: 0,
-  SoPhongVeSinh: 0
+  SoPhongNgu: '',
+  SoPhongVeSinh: ''
 };
 
 const FilterReducer = (state = initState, action) => {

@@ -44,12 +44,10 @@ const PriceRange = () => {
           aria-label="Default select example"
           style={{ flex: '1' }}
           onClick={(event) => dispatch(setDonVi(event.target.value))}
-          defaultValue="Ty"
+          defaultValue={Donvi}
         >
           {/* <option selected>Open this select menu</option> */}
-          <option value="Trieu">
-            Trieu
-          </option>
+          <option value="Trieu">Trieu</option>
           <option value="Ty">Ty</option>
         </select>
       </div>

@@ -14,8 +14,8 @@ const KhachMua = (props) => {
   const DonVi = useSelector(getDonVi);
   const PriceRange = useSelector(getPriceRange);
   const khachmua = useSelector(getKhachMua);
-  const SoPhongNgu = useSelector(getSoPhongNgu);
-  const SoPhongVeSinh = useSelector(getSoPhongVeSinh);
+  const SoPhongNgu = parseInt(useSelector(getSoPhongNgu));
+  const SoPhongVeSinh = parseInt(useSelector(getSoPhongVeSinh));
   const [arrKhach, setArrKhach] = useState([]);
   const [arrHinh, setArrHinh] = useState([]);
 
@@ -28,7 +28,7 @@ const KhachMua = (props) => {
       if (DonVi && PriceRange && khachmua) {
         await khachmua.khachmua.filter((item, index) => {
           if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
-            if (SoPhongNgu != 0 || SoPhongVeSinh != 0) {
+            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
                 parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
@@ -41,7 +41,7 @@ const KhachMua = (props) => {
             arrKhach = [...arrKhach, item];
           } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
             // filter phong ngu va ve sinh
-            if (SoPhongNgu != 0 || SoPhongVeSinh != 0) {
+            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
                 parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
@@ -65,9 +65,9 @@ const KhachMua = (props) => {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <InfinitySpin width="200" color="#4fa94d" />
       </div>
-    )
+    );
   }
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'}/>;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
 };
 
 export default KhachMua;

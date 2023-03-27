@@ -14,8 +14,8 @@ const KhachBan = () => {
   const DonVi = useSelector(getDonVi);
   const PriceRange = useSelector(getPriceRange);
   const khachban = useSelector(getKhachBan);
-  const SoPhongNgu = useSelector(getSoPhongNgu);
-  const SoPhongVeSinh = useSelector(getSoPhongVeSinh);
+  const SoPhongNgu = parseInt(useSelector(getSoPhongNgu));
+  const SoPhongVeSinh = parseInt(useSelector(getSoPhongVeSinh));
   const [arrKhach, setArrKhach] = useState([]);
   const [arrHinh, setArrHinh] = useState([]);
 
@@ -28,7 +28,7 @@ const KhachBan = () => {
       if (DonVi && PriceRange && khachban) {
         await khachban.khachban.filter((item, index) => {
           if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
-            if (SoPhongNgu != 0 || SoPhongVeSinh != 0) {
+            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
                 parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
@@ -41,7 +41,7 @@ const KhachBan = () => {
             arrKhach = [...arrKhach, item];
           } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
             // filter phong ngu va ve sinh
-            if (SoPhongNgu != 0 || SoPhongVeSinh != 0) {
+            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
                 parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
@@ -54,7 +54,7 @@ const KhachBan = () => {
             arrKhach = [...arrKhach, item];
           }
         });
-        console.log(arrKhach);
+
         setArrKhach(arrKhach);
         setArrHinh(arrHinh);
       }
@@ -67,10 +67,10 @@ const KhachBan = () => {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <InfinitySpin width="200" color="#4fa94d" />
       </div>
-    )
+    );
   }
 
-  return <KhachCell  arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
 };
 
 export default KhachBan;

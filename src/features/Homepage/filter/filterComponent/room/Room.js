@@ -19,6 +19,7 @@ const Room = () => {
             className="form-control"
             placeholder="So Phong Ngu"
             aria-label="Username"
+            value={SoPhongNgu}
             onChange={(event) => dispatch(setSoPhongNgu(event.target.value))}
           />
           <span className="input-group-text">@</span>
@@ -27,6 +28,7 @@ const Room = () => {
             className="form-control"
             placeholder="So Phong Ve Sinh"
             aria-label="Server"
+            value={SoPhongVeSinh}
             onChangeCapture={(event) => dispatch(setSoPhongVeSinh(event.target.value))}
           />
 
@@ -34,12 +36,10 @@ const Room = () => {
             className="form-select"
             aria-label="Default select example"
             onClick={(event) => dispatch(setTheLoai(event.target.value))}
-            defaultValue='Can Ho'
+            defaultValue="Can Ho"
           >
             <option value="Can Ho">Can Ho</option>
-            <option value="Nguyen Can">
-              Nguyen Can
-            </option>
+            <option value="Nguyen Can">Nguyen Can</option>
           </select>
         </div>
       </div>

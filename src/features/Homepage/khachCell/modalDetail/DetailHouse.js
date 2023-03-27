@@ -8,8 +8,7 @@ import Detail from './detail/Detail';
 const DetailHouse = () => {
   const khach = useSelector(getKhachDetail);
 
-  useEffect(() => {
-  }, [khach]);
+  useEffect(() => {}, [khach]);
 
   return (
     <div>
@@ -25,11 +24,11 @@ const DetailHouse = () => {
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 {khach && khach.khach ? (
-                  khach.khach.TenDuong +
+                  khach.khach.diachi.TenDuong +
                   ', Quan ' +
-                  khach.khach.TenQuan +
+                  khach.khach.diachi.quan.TenQuan +
                   ', Phuong ' +
-                  khach.khach.TenPhuong
+                  khach.khach.diachi.phuong.TenPhuong
                 ) : (
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <InfinitySpin width="200" color="#4fa94d" />
@@ -125,7 +124,7 @@ const DetailHouse = () => {
                             >
                               {khach.khach.TaiChinh}
                             </span>
-                            <span className="input-group-text">{khach.khach.DonVi}</span>
+                            <span className="input-group-text">{khach.donvi}</span>
                             <span className="input-group-text" id="basic-addon1">
                               @Linkface
                             </span>
@@ -139,16 +138,47 @@ const DetailHouse = () => {
                               {khach.khach.Linkface}
                             </span>
                           </div>
-                          <div className="input-group">
-                            <span className="input-group-text">@Nhu Cau Chi Tiet</span>
+
+                          <div className="input-group ">
+                            <span className="input-group-text">@So Phong Ngu</span>
+                            <span
+                              type="text"
+                              className="form-control"
+                              placeholder="Username"
+                              aria-label="Username"
+                            >
+                              {khach.khach.SoPhongNgu}
+                            </span>
+                            <span className="input-group-text">@So Phong Ve Sinh</span>
                             <span
                               type="text"
                               className="form-control"
                               placeholder="Server"
                               aria-label="Server"
                             >
-                              {khach.khach.NhuCauChiTiet}
+                              {khach.khach.SoPhongVeSinh}
                             </span>
+                            <span className="input-group-text">@The Loai</span>
+                            <span
+                              type="text"
+                              className="form-control"
+                              placeholder="Server"
+                              aria-label="Server"
+                            >
+                              {khach.khach.TheLoai}
+                            </span>
+                          </div>
+
+                          <div className="input-group">
+                            <span className="input-group-text">@Nhu Cau Chi Tiet</span>
+                            <textarea
+                              // type='text-area'
+                              className="form-control"
+                              placeholder="Server"
+                              aria-label="Server"
+                            >
+                              {khach.khach.NhuCauChiTiet}
+                            </textarea>
                           </div>
                         </>
                       ) : (

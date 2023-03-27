@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
 import InputUpload from './InputUpload/InputUpload';
-import { getRe } from '../../store/Selector';
+import { getPhuong, getQuan, getRe } from '../../store/Selector';
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -27,6 +27,8 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 function Upload() {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const phuong = useSelector(getPhuong);
+  const quan = useSelector(getQuan);
   const dispatch = useDispatch();
   const re = useSelector(getRe);
 
@@ -38,10 +40,12 @@ function Upload() {
   console.log(useParams());
 
   const fetchData = async () => {
-    let data = await axios.get('http://localhost:4000/api/phuongquan');
-    await dispatch(setPhuong(data.data.phuong));
-    await dispatch(setQuan(data.data.quan));
-    await dispatch(setPhuongQuan(data.data.phuongquan));
+    if (phuong.length == 0 || quan.length == 0) {
+      let data = await axios.get('http://localhost:4000/api/phuongquan');
+      await dispatch(setPhuong(data.data.phuong));
+      await dispatch(setQuan(data.data.quan));
+      await dispatch(setPhuongQuan(data.data.phuongquan));
+    }
   };
 
   if (isLoading) {

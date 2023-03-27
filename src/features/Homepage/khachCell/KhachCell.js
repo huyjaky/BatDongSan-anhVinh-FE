@@ -20,6 +20,7 @@ const KhachCell = (props) => {
       if (arrKhach.length > 0 && arrHinh.length > 0) {
         dispatch(
           setKhachDetail({
+            donvi: DonVi,
             khach: arrKhach[select],
             hinh: arrHinh[select]
           })

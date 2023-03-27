@@ -1,6 +1,13 @@
 import KhachCell from '../khachCell/KhachCell';
 import { useSelector } from 'react-redux';
-import { getDonVi, getKhachBan, getKhachChoThue, getPriceRange, getSoPhongNgu, getSoPhongVeSinh } from '../../../store/Selector';
+import {
+  getDonVi,
+  getKhachBan,
+  getKhachChoThue,
+  getPriceRange,
+  getSoPhongNgu,
+  getSoPhongVeSinh
+} from '../../../store/Selector';
 import { useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 
@@ -8,8 +15,8 @@ const KhachChoThue = (props) => {
   const DonVi = useSelector(getDonVi);
   const PriceRange = useSelector(getPriceRange);
   const khachchothue = useSelector(getKhachChoThue);
-  const SoPhongNgu = useSelector(getSoPhongNgu);
-  const SoPhongVeSinh = useSelector(getSoPhongVeSinh);
+  const SoPhongNgu = parseInt(useSelector(getSoPhongNgu));
+  const SoPhongVeSinh = parseInt(useSelector(getSoPhongVeSinh));
   const [arrKhach, setArrKhach] = useState([]);
   const [arrHinh, setArrHinh] = useState([]);
 
@@ -22,7 +29,7 @@ const KhachChoThue = (props) => {
       if (DonVi && PriceRange && khachchothue) {
         await khachchothue.khachchothue.filter((item, index) => {
           if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) <= PriceRange) {
-            if (SoPhongNgu != 0 || SoPhongVeSinh != 0) {
+            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
                 parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
@@ -33,9 +40,9 @@ const KhachChoThue = (props) => {
             }
             arrHinh = [...arrHinh, khachchothue.imgKhachChoThue[index]];
             arrKhach = [...arrKhach, item];
-          } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange ) {
+          } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
             // filter phong ngu va ve sinh
-            if (SoPhongNgu != 0 || SoPhongVeSinh != 0) {
+            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
                 parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
@@ -60,7 +67,7 @@ const KhachChoThue = (props) => {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <InfinitySpin width="200" color="#4fa94d" />
       </div>
-    )
+    );
   }
 
   return <KhachCell arrKhach={arrKhach} arrHinh={arrHinh} DonVi={'Trieu'} />;
