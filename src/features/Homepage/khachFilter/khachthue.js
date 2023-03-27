@@ -54,7 +54,7 @@ const KhachThue = (props) => {
     };
     fetchData();
   }, [DonVi, PriceRange, khachthue, setArrKhach, setArrHinh]);
-  
+
   if (!DonVi && !PriceRange && !khachthue) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
