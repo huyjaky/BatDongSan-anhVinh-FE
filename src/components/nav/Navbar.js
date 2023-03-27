@@ -1,11 +1,21 @@
+import { useState } from 'react';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Analyst from '../../features/Analyst/Analyst';
 import { getIsLogIn } from '../../store/Selector';
 
 const Navbar = () => {
   let status = useSelector(getIsLogIn);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
+    <>
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary navbar-light "
       style={{
@@ -15,9 +25,10 @@ const Navbar = () => {
       }}
     >
       <div className="container-fluid">
-        <Link className="navbar-brand" to={status ? '/homepage' : '/'}>
+        <button className='btn' onClick={handleShow} style={{fontSize: '30px'}}>
           V.V.T
-        </Link>
+        </button>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -56,6 +67,15 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <Analyst />
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
   );
 };
 

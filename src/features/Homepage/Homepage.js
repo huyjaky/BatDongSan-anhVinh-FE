@@ -4,6 +4,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import { setKhachBan, setKhachChoThue, setKhachMua, setKhachThue } from '../../store/actions/Log';
+import Analyst from '../Analyst/Analyst';
 import Filter from './filter/Filter';
 import './Style.scss';
 

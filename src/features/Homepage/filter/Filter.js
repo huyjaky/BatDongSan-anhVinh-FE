@@ -1,5 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { setDonVi, setSoPhongNgu, setSoPhongVeSinh, setTenPhuong, setTenQuan } from '../../../store/actions/Log';
+import {
+  setDonVi,
+  setSoPhongNgu,
+  setSoPhongVeSinh,
+  setTenPhuong,
+  setTenQuan
+} from '../../../store/actions/Log';
 import FilterComponent from './filterComponent/FilterComponent';
 
 const Filter = () => {

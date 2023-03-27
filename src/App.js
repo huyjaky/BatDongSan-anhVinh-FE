@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Navbar from './components/nav/Navbar';
+import Analyst from './features/Analyst/Analyst';
 import Homepage from './features/Homepage/Homepage';
 import KhachBan from './features/Homepage/khachFilter/khachban';
 import KhachChoThue from './features/Homepage/khachFilter/khachchothue';
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" >
         <Navbar />
         <ToastContainer
           position="top-center"
@@ -73,7 +74,8 @@ function App() {
             )}
           </Routes>
         </header>
-      </div>
+      </div >
+
     </BrowserRouter>
   );
 }
