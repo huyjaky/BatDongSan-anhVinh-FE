@@ -1,3 +1,4 @@
+
 export const setLogIn = (current) => {
   return {
     type: 'SET_LOGIN',
@@ -98,3 +99,11 @@ export const setRe = () => {
     type: 'SET_RE'
   };
 };
+
+
+export const setPriceRange = (current) => {
+  return {
+    type: 'SET_PRICERANGE',
+    payload: current
+  }
+}

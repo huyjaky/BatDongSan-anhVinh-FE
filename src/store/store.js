@@ -3,13 +3,15 @@ import { combineReducers, createStore } from 'redux';
 import InputUploadReducer from './reducers/InputUploadReducer';
 import LoginReducer from './reducers/LoginReducer';
 import KhachReducer from './reducers/KhachReducer';
+import FilterReducer from './reducers/FilterReducer';
 
 const composeEnchancers = composeWithDevTools();
 
 const rootReducer = combineReducers({
   KhachReducer,
   InputUploadReducer,
-  LoginReducer
+  LoginReducer,
+  FilterReducer
 });
 
 const store = createStore(rootReducer, composeEnchancers);

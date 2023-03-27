@@ -95,15 +95,17 @@ const Homepage = () => {
             </li>
           </ul>
           {/* hoan thien phan bo loc tai day */}
-          <div className='filter-container'>
+          <div className="filter-container">
             <button
               className="btn btn-primary"
               data-bs-toggle="modal"
               data-bs-target="#modalFilter"
               style={{
-                width: '60%', backgroundColor: 'transparent',
+                width: '60%',
+                backgroundColor: 'transparent',
                 marginTop: '20px'
-              }} >
+              }}
+            >
               Filter
             </button>
             <Filter />
