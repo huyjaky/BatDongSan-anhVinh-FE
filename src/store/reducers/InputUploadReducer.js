@@ -7,16 +7,10 @@ const initState = {
   loaikhach: 'Loai Khach',
   tenphuong: 'Phuong',
   tenquan: 'Quan',
-  reRender: true
 };
 
 const InputUploadReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'SET_RE':
-      return {
-        ...state,
-        reRender: !action.payload
-      };
     case 'SET_PHUONG':
       return {
         ...state,

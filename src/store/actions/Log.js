@@ -93,12 +93,6 @@ export const setKhachDetail = (current) => {
   };
 };
 
-export const setRe = () => {
-  return {
-    type: 'SET_RE'
-  };
-};
-
 export const setPriceRange = (current) => {
   return {
     type: 'SET_PRICERANGE',

@@ -30,12 +30,11 @@ function Upload() {
   const phuong = useSelector(getPhuong);
   const quan = useSelector(getQuan);
   const dispatch = useDispatch();
-  const re = useSelector(getRe);
 
   useEffect(() => {
     fetchData();
     setIsLoading(false);
-  }, [re]);
+  }, []);
 
   console.log(useParams());
 

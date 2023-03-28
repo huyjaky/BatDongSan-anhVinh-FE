@@ -11,7 +11,6 @@ export const getLoaiKhach = (state) => state.InputUploadReducer.loaikhach;
 export const getTenPhuong = (state) => state.InputUploadReducer.tenphuong;
 export const getTenQuan = (state) => state.InputUploadReducer.tenquan;
 
-export const getRe = (state) => state.InputUploadReducer.reRender;
 
 export const getKhachMua = (state) => state.KhachReducer.khachmua;
 export const getKhachBan = (state) => state.KhachReducer.khachban;

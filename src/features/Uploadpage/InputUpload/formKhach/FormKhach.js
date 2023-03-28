@@ -86,7 +86,6 @@ const FormKhach = (props) => {
           setTaiChinh('');
           setNhuCauChiTiet('');
           setFiles([]);
-          dispatch(setRe());
 
         } else if (response.data === 'error') {
           toast.warn('Error: co loi say ra!');
