@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 
 const Detail = () => {
   const khach = useSelector(getKhachDetail);
-  useEffect(() => {}, [khach]);
   return (
     <div className="img-detail">
       <AwesomeSlider animation="cubeAnimation">

@@ -29,7 +29,7 @@ const Room = () => {
             placeholder="So Phong Ve Sinh"
             aria-label="Server"
             value={SoPhongVeSinh}
-            onChangeCapture={(event) => dispatch(setSoPhongVeSinh(event.target.value))}
+            onChange={(event) => dispatch(setSoPhongVeSinh(event.target.value))}
           />
 
           <select

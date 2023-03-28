@@ -17,6 +17,7 @@ const KhachCell = (props) => {
 
   useEffect(() => {
     const fetchData = async (arrKhach, arrHinh) => {
+      console.log(arrHinh);
       if (arrKhach.length > 0 && arrHinh.length > 0) {
         dispatch(
           setKhachDetail({
@@ -128,9 +129,12 @@ KhachCell.propTypes = {
     })
   ).isRequired,
   arrHinh: PropTypes.arrayOf(
-    PropTypes.shape({
-      Hinh: PropTypes.string
-    })
-  ).isRequired,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        Hinh: PropTypes.string
+      })
+    )
+  ),
+
   DonVi: PropTypes.string
 };
