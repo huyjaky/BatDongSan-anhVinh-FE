@@ -5,7 +5,7 @@ const Loginpage = () => {
   const [MatKhau, setMatKhau] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleOnClick =async (event) => {
+  const handleOnClick = async (event) => {
     await setIsLoading(true);
   };
 

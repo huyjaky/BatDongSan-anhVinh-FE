@@ -122,7 +122,7 @@ KhachCell.propTypes = {
           TenPhuong: PropTypes.string
         }),
         quan: PropTypes.shape({
-            TenQuan: PropTypes.string
+          TenQuan: PropTypes.string
         })
       })
     })

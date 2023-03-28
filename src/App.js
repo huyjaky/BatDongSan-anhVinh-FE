@@ -35,7 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App" >
+      <div className="App">
         <Navbar />
         <ToastContainer
           position="top-center"
@@ -70,13 +70,12 @@ function App() {
               </>
             ) : (
               <>
-                <Route path='*' element={<ErrorPage />} />
+                <Route path="*" element={<ErrorPage />} />
               </>
             )}
           </Routes>
         </header>
-      </div >
-
+      </div>
     </BrowserRouter>
   );
 }

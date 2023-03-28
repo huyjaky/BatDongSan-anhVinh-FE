@@ -6,63 +6,57 @@ import {
   getKhachBan,
   getPriceRange,
   getSoPhongNgu,
-  getSoPhongVeSinh
+  getSoPhongVeSinh,
+  getTenPhuong,
+  getTenQuan,
+  getTheLoai
 } from '../../../store/Selector';
 import KhachCell from '../khachCell/KhachCell';
+import { fileFilter } from './filter';
 
-const KhachBan = () => {
+const KhachBan = (props) => {
   const DonVi = useSelector(getDonVi);
   const PriceRange = useSelector(getPriceRange);
   const khachban = useSelector(getKhachBan);
   const SoPhongNgu = parseInt(useSelector(getSoPhongNgu));
   const SoPhongVeSinh = parseInt(useSelector(getSoPhongVeSinh));
+  const tenphuong = useSelector(getTenPhuong);
+  const tenquan = useSelector(getTenQuan);
+  const TheLoai = useSelector(getTheLoai);
   const [arrKhach, setArrKhach] = useState([]);
   const [arrHinh, setArrHinh] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setArrKhach([]);
-      setArrHinh([]);
-      let arrKhach = [];
-      let arrHinh = [];
       if (DonVi && PriceRange && khachban) {
-        await khachban.khachban.filter((item, index) => {
-          // neu no con don vi la trieu trong bo loc thi o khach ban la toan tren 1 ty
-          // nen no se nhan 1000
-          if ((DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange)) {
-            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
-              if (
-                parseInt(item.SoPhongNgu) == SoPhongNgu ||
-                parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
-              ) {
-                arrHinh = [...arrHinh, khachban.imgKhachBan[index]];
-                arrKhach = [...arrKhach, item];
-              }
-            }
-            arrHinh = [...arrHinh, khachban.imgKhachBan[index]];
-            arrKhach = [...arrKhach, item];
-          } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
-            // filter phong ngu va ve sinh
-            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
-              if (
-                parseInt(item.SoPhongNgu) == SoPhongNgu ||
-                parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
-              ) {
-                arrHinh = [...arrHinh, khachban.imgKhachBan[index]];
-                arrKhach = [...arrKhach, item];
-              }
-            }
-            arrHinh = [...arrHinh, khachban.imgKhachBan[index]];
-            arrKhach = [...arrKhach, item];
-          }
-        });
-
-        setArrKhach(arrKhach);
-        setArrHinh(arrHinh);
+        const khach = await fileFilter(
+          DonVi,
+          PriceRange,
+          khachban,
+          SoPhongNgu,
+          SoPhongVeSinh,
+          tenphuong,
+          tenquan,
+          TheLoai,
+          'KhachBan'
+        );
+        setArrKhach(khach.arrKhach);
+        setArrHinh(khach.arrHinh);
       }
     };
     fetchData();
-  }, [DonVi, PriceRange, khachban, setArrKhach, setArrHinh]);
+  }, [
+    DonVi,
+    PriceRange,
+    khachban,
+    setArrHinh,
+    setArrKhach,
+    SoPhongVeSinh,
+    SoPhongNgu,
+    TheLoai,
+    tenquan,
+    tenphuong
+  ]);
 
   if (!DonVi && !PriceRange && !khachban) {
     return (
@@ -71,7 +65,6 @@ const KhachBan = () => {
       </div>
     );
   }
-
   return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
 };
 

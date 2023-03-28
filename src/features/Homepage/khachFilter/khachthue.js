@@ -6,9 +6,13 @@ import {
   getKhachThue,
   getPriceRange,
   getSoPhongNgu,
-  getSoPhongVeSinh
+  getSoPhongVeSinh,
+  getTenPhuong,
+  getTenQuan,
+  getTheLoai
 } from '../../../store/Selector';
 import KhachCell from '../khachCell/KhachCell';
+import { fileFilter } from './filter';
 
 const KhachThue = (props) => {
   const DonVi = useSelector(getDonVi);
@@ -16,52 +20,43 @@ const KhachThue = (props) => {
   const khachthue = useSelector(getKhachThue);
   const SoPhongNgu = parseInt(useSelector(getSoPhongNgu));
   const SoPhongVeSinh = parseInt(useSelector(getSoPhongVeSinh));
+  const tenphuong = useSelector(getTenPhuong);
+  const tenquan = useSelector(getTenQuan);
+  const TheLoai = useSelector(getTheLoai);
   const [arrKhach, setArrKhach] = useState([]);
   const [arrHinh, setArrHinh] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setArrKhach([]);
-      setArrHinh([]);
-      let arrKhach = [];
-      let arrHinh = [];
       if (DonVi && PriceRange && khachthue) {
-        await khachthue.khachthue.filter((item, index) => {
-          if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) <= PriceRange) {
-            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
-              if (
-                parseInt(item.SoPhongNgu) == SoPhongNgu ||
-                parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
-              ) {
-                arrHinh = [...arrHinh, khachthue.imgKhachThue[index]];
-                arrKhach = [...arrKhach, item];
-              }
-              return;
-            }
-            arrHinh = [...arrHinh, khachthue.imgKhachThue[index]];
-            arrKhach = [...arrKhach, item];
-          } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
-            // filter phong ngu va ve sinh
-            if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
-              if (
-                parseInt(item.SoPhongNgu) == SoPhongNgu ||
-                parseInt(item.SoPhongVeSinh) == SoPhongVeSinh
-              ) {
-                arrHinh = [...arrHinh, khachthue.imgKhachThue[index]];
-                arrKhach = [...arrKhach, item];
-              }
-              return;
-            }
-            arrHinh = [...arrHinh, khachthue.imgKhachThue[index]];
-            arrKhach = [...arrKhach, item];
-          }
-        });
-        setArrKhach(arrKhach);
-        setArrHinh(arrHinh);
+        const khach = await fileFilter(
+          DonVi,
+          PriceRange,
+          khachthue,
+          SoPhongNgu,
+          SoPhongVeSinh,
+          tenphuong,
+          tenquan,
+          TheLoai,
+          'KhachThue'
+        );
+        setArrKhach(khach.arrKhach);
+        setArrHinh(khach.arrHinh);
       }
     };
     fetchData();
-  }, [DonVi, PriceRange, khachthue, setArrKhach, setArrHinh, SoPhongNgu, SoPhongVeSinh]);
+  }, [
+    DonVi,
+    PriceRange,
+    khachthue,
+    setArrHinh,
+    setArrKhach,
+    SoPhongVeSinh,
+    SoPhongNgu,
+    TheLoai,
+    tenquan,
+    tenphuong
+  ]);
 
   if (!DonVi && !PriceRange && !khachthue) {
     return (
@@ -70,8 +65,7 @@ const KhachThue = (props) => {
       </div>
     );
   }
-
-  return <KhachCell arrKhach={arrKhach} arrHinh={arrHinh} DonVi={'Trieu'} />;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
 };
 
 export default KhachThue;

@@ -1,9 +1,5 @@
 const Analyst = () => {
-  return (
-    <div>
-      chcek
-    </div>
-  );
+  return <div>chcek</div>;
 };
 
 export default Analyst;
