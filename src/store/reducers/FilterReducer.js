@@ -1,7 +1,7 @@
 const initState = {
   priceRange: 500,
   DonVi: 'Ty',
-  TheLoai: 'Can Ho',
+  TheLoai: 'Tat Ca',
   SoPhongNgu: '',
   SoPhongVeSinh: ''
 };

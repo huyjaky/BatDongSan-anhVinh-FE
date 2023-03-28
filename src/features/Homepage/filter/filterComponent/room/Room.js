@@ -36,8 +36,9 @@ const Room = () => {
             className="form-select"
             aria-label="Default select example"
             onClick={(event) => dispatch(setTheLoai(event.target.value))}
-            defaultValue="Can Ho"
+            defaultValue="Tat Ca"
           >
+            <option value="Tat Ca">Tat Ca</option>
             <option value="Can Ho">Can Ho</option>
             <option value="Nguyen Can">Nguyen Can</option>
           </select>

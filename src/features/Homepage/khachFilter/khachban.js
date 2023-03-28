@@ -27,7 +27,9 @@ const KhachBan = () => {
       let arrHinh = [];
       if (DonVi && PriceRange && khachban) {
         await khachban.khachban.filter((item, index) => {
-          if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
+          // neu no con don vi la trieu trong bo loc thi o khach ban la toan tren 1 ty
+          // nen no se nhan 1000
+          if ((DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange)) {
             if (SoPhongNgu || SoPhongVeSinh || SoPhongVeSinh != 0 || SoPhongNgu != 0) {
               if (
                 parseInt(item.SoPhongNgu) == SoPhongNgu ||
