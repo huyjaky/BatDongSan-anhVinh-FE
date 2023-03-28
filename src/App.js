@@ -51,9 +51,11 @@ function App() {
         />
         <header className="App-header">
           <Routes>
-            <Route path="/" element={<Login />} />
-            {isLoggedIn ? (
-              <>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          {isLoggedIn ? (
+            <>
+              <Routes>
                 <Route path="/homepage" element={<Homepage />}>
                   <Route path="/homepage/khachthue" element={<KhachThue />} />
                   <Route path="/homepage/khachban" element={<KhachBan />} />
@@ -65,14 +67,16 @@ function App() {
                   <Route path="/upload/khachmua" element={<FormKhach Donvi={'Ty'} />} />
                   <Route path="/upload/khachban" element={<FormKhach Donvi={'Ty'} />} />
                   <Route path="/upload/khachchothue" element={<FormKhach Donvi={'Trieu'} />} />
-
                   <Route path="/upload/" element={<FormKhach Donvi={'Trieu'} />} />
                 </Route>
-              </>
-            ) : (
-              <Route path="/:trash" element={<ErrorPage />} />
-            )}
-          </Routes>
+              </Routes>
+            </>
+          ) : (
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path='*' element={<ErrorPage />} />
+            </Routes>
+          )}
         </header>
       </div >
 

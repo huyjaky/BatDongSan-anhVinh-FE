@@ -25,7 +25,7 @@ const Navbar = () => {
       }}
     >
       <div className="container-fluid">
-        <button className='btn' onClick={handleShow} style={{fontSize: '30px'}}>
+        <button className='btn' onClick={handleShow} style={{fontSize: '20px'}}>
           V.V.T
         </button>
 
