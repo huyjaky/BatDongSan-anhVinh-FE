@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import React FilePond
-import { FilePond, registerPlugin } from 'react-filepond';
+import { registerPlugin } from 'react-filepond';
 
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css';
@@ -17,8 +17,8 @@ import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { setPhuong, setPhuongQuan, setQuan } from '../../store/actions/Log';
-import InputUpload from './InputUpload/InputUpload';
 import { getPhuong, getQuan, getRe } from '../../store/Selector';
+import InputUpload from './InputUpload/InputUpload';
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -59,46 +59,7 @@ function Upload() {
   return (
     <>
       <InputUpload />
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-        <div
-          className="file-pond"
-          style={{
-            width: '50%',
-            height: '100%',
-            marginTop: '1vh',
-            zIndex: '0',
-            display: 'flex',
-            flexDirection: 'column',
-            alignContent: 'center'
-          }}
-        >
-          <FilePond
-            className={`${re}`}
-            files={files}
-            onupdatefiles={setFiles}
-            allowMultiple={true}
-            maxFiles={30}
-            maxParallelUploads={30}
-            server="http://localhost:4000/api/img"
-            name="files" /* sets the file input name, it's filepond by default */
-            labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
-            acceptedFileTypes={[
-              'image/jpeg',
-              'image/png',
-              'image/gif',
-              'image/bmp',
-              'image/svg+xml',
-              'image/webp',
-              'image/tiff',
-              'image/x-icon',
-              'application/pdf'
-            ]}
-            onremovefile={(file) => {
-              console.log(file);
-            }}
-          />
-        </div>
-      </div>
+
     </>
   );
 }

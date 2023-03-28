@@ -8,6 +8,17 @@ import { getLoaiKhach, getPhuongSelect, getQuanSelect } from '../../../../store/
 import Phuong from '../phuong_quan/phuong/Phuong';
 import Quan from '../phuong_quan/quan/Quan';
 import './Style.scss';
+import { FilePond, registerPlugin } from 'react-filepond';
+
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css';
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 const FormKhach = (props) => {
   const [isFinish, setIsFinish] = useState(false);
@@ -20,6 +31,7 @@ const FormKhach = (props) => {
   const [SoPhongNgu, setSoPhongNgu] = useState('');
   const [SoPhongVeSinh, setSoPhongVeSinh] = useState('');
   const [TheLoai, setTheLoai] = useState('Nguyen Can');
+  const [files, setFiles] = useState([]);
 
   const phuongSelect = useSelector(getPhuongSelect);
   const quanSelect = useSelector(getQuanSelect);
@@ -73,7 +85,9 @@ const FormKhach = (props) => {
           setLinkface('');
           setTaiChinh('');
           setNhuCauChiTiet('');
+          setFiles([]);
           dispatch(setRe());
+
         } else if (response.data === 'error') {
           toast.warn('Error: co loi say ra!');
         }
@@ -212,6 +226,45 @@ const FormKhach = (props) => {
         >
           Submit
         </button>
+      </div>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <div
+          className="file-pond"
+          style={{
+            width: '80%',
+            height: '100%',
+            marginTop: '1vh',
+            zIndex: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'center'
+          }}
+        >
+          <FilePond
+            files={files}
+            onupdatefiles={setFiles}
+            allowMultiple={true}
+            maxFiles={30}
+            maxParallelUploads={30}
+            server="http://localhost:4000/api/img"
+            name="files" /* sets the file input name, it's filepond by default */
+            labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
+            acceptedFileTypes={[
+              'image/jpeg',
+              'image/png',
+              'image/gif',
+              'image/bmp',
+              'image/svg+xml',
+              'image/webp',
+              'image/tiff',
+              'image/x-icon',
+              'application/pdf'
+            ]}
+            onremovefile={(file) => {
+              console.log(file);
+            }}
+          />
+        </div>
       </div>
     </form>
   );
