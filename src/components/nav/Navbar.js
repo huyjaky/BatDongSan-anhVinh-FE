@@ -3,7 +3,6 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Analyst from '../../features/Analyst/Analyst';
 import { getIsLogIn } from '../../store/Selector';
 
 const Navbar = () => {
@@ -72,7 +71,6 @@ const Navbar = () => {
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Analyst />
         </Offcanvas.Body>
       </Offcanvas>
     </>

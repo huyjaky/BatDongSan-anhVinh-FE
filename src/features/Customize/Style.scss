@@ -1,0 +1,12 @@
+.customize-container {
+  display: flex;
+  height: 100%;
+  .customize-items_contents {
+    flex: 1.5;
+    background-color: aliceblue;
+  }
+  .customize-items_preview {
+    flex: 1;
+    background-color: aquamarine;
+  }
+}
