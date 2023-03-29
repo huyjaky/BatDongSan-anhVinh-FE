@@ -65,7 +65,7 @@ const KhachThue = (props) => {
       </div>
     );
   }
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Trieu'} />;
 };
 
 export default KhachThue;
