@@ -18,6 +18,9 @@ export const getKhachThue = (state) => state.KhachReducer.khachthue;
 export const getKhachChoThue = (state) => state.KhachReducer.khachchothue;
 export const getKhachDetail = (state) => state.KhachReducer.khachdetail;
 
+export const getFetch = (state) => state.KhachReducer.isFetch;
+
+
 export const getPriceRange = (state) => state.FilterReducer.priceRange;
 export const getDonVi = (state) => state.FilterReducer.DonVi;
 export const getTheLoai = (state) => state.FilterReducer.TheLoai;

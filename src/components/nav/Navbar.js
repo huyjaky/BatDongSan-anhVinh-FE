@@ -51,6 +51,11 @@ const Navbar = () => {
                   Upload
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/customize">
+                  Customize
+                </Link>
+              </li>
             </ul>
             <form className="d-flex" role="search">
               <input

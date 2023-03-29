@@ -15,11 +15,17 @@ const initState = {
     khachchothue: [],
     imgkhachchothue: []
   },
-  khachdetail: {}
+  khachdetail: {},
+  isFetch: false
 };
 
 const KhachReducer = (state = initState, action) => {
   switch (action.type) {
+    case 'SET_FETCH':
+      return {
+        ...state,
+        isFetch: action.payload
+      }
     case 'SET_KHACHMUA':
       return {
         ...state,

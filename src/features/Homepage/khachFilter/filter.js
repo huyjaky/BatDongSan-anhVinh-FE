@@ -50,47 +50,7 @@ export const fileFilter = async (
         img: khach.imgKhachChoThue
       }
     }
-    // if (loaikhach === 'KhachMua') {
-    //   await khach.khachmua.filter((item, index) => {
-    //     if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachMua[index]];
-    //     } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachMua[index]];
-    //     }
-    //   });
-    // } else if (loaikhach === 'KhachBan') {
-    //   await khach.khachban.filter((item, index) => {
-    //     if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachBan[index]];
-    //     } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachBan[index]];
-    //     }
-    //   });
-    // } else if (loaikhach === 'KhachThue') {
-    //   await khach.khachthue.filter((item, index) => {
-    //     if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachThue[index]];
-    //     } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachThue[index]];
-    //     }
-    //   });
-    // } else if (loaikhach === 'KhachChoThue') {
-    //   await khach.khachchothue.filter((item, index) => {
-    //     if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachChoThue[index]];
-    //     } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
-    //       arrKhach1 = [...arrKhach1, item];
-    //       arrHinh1 = [...arrHinh1, khach.imgKhachChoThue[index]];
-    //     }
-    //   });
-    // }
+
     await khach_in.khach.filter((item, index) => {
       if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
         arrKhach1 = [...arrKhach1, item];

@@ -2,8 +2,11 @@
   display: flex;
   height: 100%;
   .customize-items_contents {
+    height: 100%;
+    overflow: scroll;
     flex: 1.5;
     background-color: aliceblue;
+    overflow-x: hidden;
   }
   .customize-items_preview {
     flex: 1;

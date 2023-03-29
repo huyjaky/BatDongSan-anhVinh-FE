@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
-import { setKhachBan, setKhachChoThue, setKhachMua, setKhachThue } from '../../store/actions/Log';
-import { getKhachBan, getKhachChoThue, getKhachMua, getKhachThue } from '../../store/Selector';
+import { setFetch, setKhachBan, setKhachChoThue, setKhachMua, setKhachThue } from '../../store/actions/Log';
+import { getFetch, getKhachBan, getKhachChoThue, getKhachMua, getKhachThue } from '../../store/Selector';
 import Filter from './filter/Filter';
 import './Style.scss';
 
@@ -15,22 +15,24 @@ const Homepage = () => {
   const khachchothue = useSelector(getKhachChoThue);
   const khachban = useSelector(getKhachBan);
   const khachmua = useSelector(getKhachMua);
+  const isFetch = useSelector(getFetch);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isFetch]);
 
   const fetchData = async () => {
     try {
-      if (!khachthue && !khachchothue && !khachban && !khachmua) {
+      if (isFetch == false) {
         const allkhach = await axios.get('http://localhost:4000/api/getallkhach');
         await dispatch(setKhachThue(allkhach.data.khachthue));
         await dispatch(setKhachMua(allkhach.data.khachmua));
         await dispatch(setKhachChoThue(allkhach.data.khachchothue));
         await dispatch(setKhachBan(allkhach.data.khachban));
-        console.log(allkhach);
+        dispatch(setFetch(true));
+        console.log(allkhach, 'homepage');
       }
       setIsLoading(false);
     } catch (error) {

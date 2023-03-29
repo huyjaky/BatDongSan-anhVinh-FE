@@ -127,3 +127,10 @@ export const setSoPhongVeSinh = (current) => {
     payload: current
   };
 };
+
+export const setFetch = (current) => {
+  return {
+    type: 'SET_FETCH',
+    payload: current
+  }
+}
