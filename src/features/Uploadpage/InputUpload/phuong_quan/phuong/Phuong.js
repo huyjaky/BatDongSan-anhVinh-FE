@@ -24,7 +24,10 @@ const Phuong = () => {
       >
         {tenphuong}
       </button>
-      <ul className="dropdown-menu" style={{ width: '100%', height: '40vh', overflow: 'scroll', overflowX: 'hidden' }}>
+      <ul
+        className="dropdown-menu"
+        style={{ width: '100%', height: '40vh', overflow: 'scroll', overflowX: 'hidden' }}
+      >
         {phuong &&
           phuong.map((item, index) => {
             return (

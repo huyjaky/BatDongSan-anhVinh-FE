@@ -132,5 +132,5 @@ export const setFetch = (current) => {
   return {
     type: 'SET_FETCH',
     payload: current
-  }
-}
+  };
+};

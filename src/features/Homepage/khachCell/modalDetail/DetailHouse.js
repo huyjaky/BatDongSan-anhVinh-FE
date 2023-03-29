@@ -8,7 +8,7 @@ import Detail from './detail/Detail';
 const DetailHouse = () => {
   const khach = useSelector(getKhachDetail);
 
-  useEffect(() => { }, [khach]);
+  useEffect(() => {}, [khach]);
 
   return (
     <div>
@@ -177,13 +177,12 @@ const DetailHouse = () => {
                               placeholder="Server"
                               aria-label="Server"
                               style={{
-                                height: "100px",
-                                overflow: "auto",
-                                border: "1px solid #ccc",
+                                height: '100px',
+                                overflow: 'auto',
+                                border: '1px solid #ccc'
                               }}
-                              defaultValue= {khach.khach.NhuCauChiTiet}
-                            >
-                            </textarea>
+                              defaultValue={khach.khach.NhuCauChiTiet}
+                            ></textarea>
                           </div>
                         </>
                       ) : (

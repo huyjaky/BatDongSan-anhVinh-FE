@@ -13,7 +13,11 @@ const Detail = () => {
           khach.hinh.map((item, index) => {
             return (
               <div key={index} style={{ borderRadius: '40px' }}>
-                <img src={`http://localhost:4000/api/img/path/${item.Hinh}`} alt="mota"></img>
+                <img
+                  src={`http://localhost:4000/api/img/path/${item.Hinh}`}
+                  className="img-nha"
+                  alt="mota"
+                ></img>
               </div>
             );
           })

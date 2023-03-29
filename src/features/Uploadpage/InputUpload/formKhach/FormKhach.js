@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { setFetch, setLoaiKhach, setRe, setTenPhuong, setTenQuan } from '../../../../store/actions/Log';
+import {
+  setFetch,
+  setLoaiKhach,
+  setRe,
+  setTenPhuong,
+  setTenQuan
+} from '../../../../store/actions/Log';
 import { getLoaiKhach, getPhuongSelect, getQuanSelect } from '../../../../store/Selector';
 import Phuong from '../phuong_quan/phuong/Phuong';
 import Quan from '../phuong_quan/quan/Quan';
@@ -89,7 +95,7 @@ const FormKhach = (props) => {
 
           // load lai du lieu tu server
           dispatch(setFetch(false));
-
+          
         } else if (response.data === 'error') {
           toast.warn('Error: co loi say ra!');
         }

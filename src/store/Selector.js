@@ -11,7 +11,6 @@ export const getLoaiKhach = (state) => state.InputUploadReducer.loaikhach;
 export const getTenPhuong = (state) => state.InputUploadReducer.tenphuong;
 export const getTenQuan = (state) => state.InputUploadReducer.tenquan;
 
-
 export const getKhachMua = (state) => state.KhachReducer.khachmua;
 export const getKhachBan = (state) => state.KhachReducer.khachban;
 export const getKhachThue = (state) => state.KhachReducer.khachthue;
@@ -19,7 +18,6 @@ export const getKhachChoThue = (state) => state.KhachReducer.khachchothue;
 export const getKhachDetail = (state) => state.KhachReducer.khachdetail;
 
 export const getFetch = (state) => state.KhachReducer.isFetch;
-
 
 export const getPriceRange = (state) => state.FilterReducer.priceRange;
 export const getDonVi = (state) => state.FilterReducer.DonVi;

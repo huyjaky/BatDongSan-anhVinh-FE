@@ -25,7 +25,7 @@ const KhachReducer = (state = initState, action) => {
       return {
         ...state,
         isFetch: action.payload
-      }
+      };
     case 'SET_KHACHMUA':
       return {
         ...state,

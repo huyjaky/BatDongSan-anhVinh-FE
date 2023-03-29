@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Navbar from './components/nav/Navbar';
-import Customize from './features/Customize/Customize';
 import Homepage from './features/Homepage/Homepage';
 import KhachBan from './features/Homepage/khachFilter/khachban';
 import KhachChoThue from './features/Homepage/khachFilter/khachchothue';
@@ -67,9 +66,6 @@ function App() {
                   <Route path="/upload/khachchothue" element={<FormKhach Donvi={'Trieu'} />} />
                   <Route path="/upload/" element={<FormKhach Donvi={'Trieu'} />} />
                 </Route>
-                <Route path='/customize' element={<Customize />} />
-
-                {/* </Route> */}
               </>
             ) : (
               <>

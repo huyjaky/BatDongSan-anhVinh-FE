@@ -3,8 +3,20 @@ import { useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
-import { setFetch, setKhachBan, setKhachChoThue, setKhachMua, setKhachThue } from '../../store/actions/Log';
-import { getFetch, getKhachBan, getKhachChoThue, getKhachMua, getKhachThue } from '../../store/Selector';
+import {
+  setFetch,
+  setKhachBan,
+  setKhachChoThue,
+  setKhachMua,
+  setKhachThue
+} from '../../store/actions/Log';
+import {
+  getFetch,
+  getKhachBan,
+  getKhachChoThue,
+  getKhachMua,
+  getKhachThue
+} from '../../store/Selector';
 import Filter from './filter/Filter';
 import './Style.scss';
 

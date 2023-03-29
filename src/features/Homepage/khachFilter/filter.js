@@ -24,31 +24,31 @@ export const fileFilter = async (
     let khach_in = {
       khach: [],
       img: []
-    }
+    };
     if (loaikhach === 'KhachMua') {
       khach_in = {
         ...khach_in,
         khach: khach.khachmua,
         img: khach.imgKhachMua
-      }
+      };
     } else if (loaikhach === 'KhachBan') {
       khach_in = {
         ...khach_in,
         khach: khach.khachban,
         img: khach.imgKhachBan
-      }
+      };
     } else if (loaikhach === 'KhachThue') {
       khach_in = {
         ...khach_in,
         khach: khach.khachthue,
         img: khach.imgKhachThue
-      }
+      };
     } else if (loaikhach === 'KhachChoThue') {
       khach_in = {
         ...khach_in,
         khach: khach.khachchothue,
         img: khach.imgKhachChoThue
-      }
+      };
     }
 
     await khach_in.khach.filter((item, index) => {

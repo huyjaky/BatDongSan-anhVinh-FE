@@ -58,7 +58,6 @@ function Upload() {
   return (
     <>
       <InputUpload />
-
     </>
   );
 }

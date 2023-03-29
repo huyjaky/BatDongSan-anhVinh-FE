@@ -51,11 +51,6 @@ const Navbar = () => {
                   Upload
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/customize">
-                  Customize
-                </Link>
-              </li>
             </ul>
             <form className="d-flex" role="search">
               <input
@@ -75,8 +70,7 @@ const Navbar = () => {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
-        </Offcanvas.Body>
+        <Offcanvas.Body></Offcanvas.Body>
       </Offcanvas>
     </>
   );

@@ -6,7 +6,7 @@ const initState = {
   quanSelect: 'Quan',
   loaikhach: 'Loai Khach',
   tenphuong: 'Phuong',
-  tenquan: 'Quan',
+  tenquan: 'Quan'
 };
 
 const InputUploadReducer = (state = initState, action) => {

@@ -7,7 +7,10 @@ import { useEffect, useState } from 'react';
 import DetailHouse from './modalDetail/DetailHouse';
 import { useDispatch } from 'react-redux';
 import { setKhachDetail } from '../../../store/actions/Log';
-import { InfinitySpin } from 'react-loader-spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCashRegister, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const KhachCell = (props) => {
   var count = 0;
@@ -29,7 +32,21 @@ const KhachCell = (props) => {
       }
     };
     fetchData(arrKhach, arrHinh);
+    console.log(arrKhach);
   }, [select, arrKhach, arrHinh]);
+
+  const handleXacNhan = async () => {
+    try {
+      toast.loading('Data is loading!');
+      const response = await axios.post('http://localhost:4000/api/remove/khach', {
+        
+      });
+      toast.dismiss();
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
 
   return (
     <>
@@ -40,6 +57,29 @@ const KhachCell = (props) => {
             count = index;
             return (
               <div className="khach" key={index}>
+                <div className="function-remove">
+                  <button
+                    className="icon-container "
+                    value={count}
+                    onClick={(event) => setSelect(event.currentTarget.value)}
+                    data-bs-toggle="modal"
+                    data-bs-target="#xacnhan"
+                  >
+                    <FontAwesomeIcon icon={faTrash} style={{ color: '#ff2e2e', scale: '1.2' }} />
+                  </button>
+                </div>
+
+                <div className="function-custom">
+                  <button
+                    className="icon-container btn"
+                    value={count}
+                    onClick={(event) => setSelect(event.currentTarget.value)}
+                    type="button"
+                  >
+                    <FontAwesomeIcon icon={faCashRegister} style={{ scale: '1.2' }} />
+                  </button>
+                </div>
+
                 {/* tao ra slide anh */}
                 <AwesomeSlider animation="cubeAnimation" key={index}>
                   {item && item.length > 0 ? (
@@ -47,6 +87,7 @@ const KhachCell = (props) => {
                       return (
                         <div className="container" key={index} style={{ borderRadius: '40px' }}>
                           <img
+                            className="img-nha"
                             src={`http://localhost:4000/api/img/path/${item.Hinh}`}
                             alt="mota"
                           ></img>
@@ -97,6 +138,40 @@ const KhachCell = (props) => {
             );
           })}
         <DetailHouse />
+      </div>
+
+      <div
+        className="modal fade"
+        id="xacnhan"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Xac Nhan
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body" style={{ display: 'grid' }}>
+              <button type="button" className="btn btn-primary" style={{ marginBottom: '20px' }}
+                data-bs-dismiss="modal"
+              >
+                Xac Nhan
+              </button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                Huy Bo
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
