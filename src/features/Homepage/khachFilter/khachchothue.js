@@ -40,8 +40,9 @@ const KhachChoThue = (props) => {
           TheLoai,
           'KhachChoThue'
         );
-        setArrKhach(khach.arrKhach);
-        setArrHinh(khach.arrHinh);
+        await setArrKhach(khach.arrKhach);
+        await setArrHinh(khach.arrHinh);
+        console.log(arrKhach);
       }
     };
     fetchData();
@@ -65,7 +66,7 @@ const KhachChoThue = (props) => {
       </div>
     );
   }
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Trieu'} />;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Trieu'} loaikhach={'KhachChoThue'}/>;
 };
 
 export default KhachChoThue;

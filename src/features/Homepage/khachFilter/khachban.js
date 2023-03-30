@@ -65,7 +65,7 @@ const KhachBan = (props) => {
       </div>
     );
   }
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} loaikhach={'KhachBan'} />;
 };
 
 export default KhachBan;

@@ -36,7 +36,6 @@ function Upload() {
     setIsLoading(false);
   }, []);
 
-  console.log(useParams());
 
   const fetchData = async () => {
     if (phuong.length == 0 || quan.length == 0) {

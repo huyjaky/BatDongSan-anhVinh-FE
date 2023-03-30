@@ -69,7 +69,7 @@ const KhachMua = (props) => {
   }
 
   // console.timeEnd('khach');
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} />;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} loaikhach={'KhachMua'}/>;
 };
 
 export default KhachMua;

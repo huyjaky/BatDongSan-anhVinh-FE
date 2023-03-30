@@ -52,14 +52,15 @@ export const fileFilter = async (
     }
 
     await khach_in.khach.filter((item, index) => {
-      if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
+      if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) /1000 <= PriceRange) {
         arrKhach1 = [...arrKhach1, item];
         arrHinh1 = [...arrHinh1, khach_in.img[index]];
-      } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
+      } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) /1000 <= PriceRange) {
         arrKhach1 = [...arrKhach1, item];
         arrHinh1 = [...arrHinh1, khach_in.img[index]];
       }
     });
+    
 
     await arrKhach1.filter((item, index) => {
       if (SoPhongNgu || SoPhongVeSinh) {

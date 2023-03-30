@@ -95,7 +95,7 @@ const FormKhach = (props) => {
 
           // load lai du lieu tu server
           dispatch(setFetch(false));
-          
+
         } else if (response.data === 'error') {
           toast.warn('Error: co loi say ra!');
         }

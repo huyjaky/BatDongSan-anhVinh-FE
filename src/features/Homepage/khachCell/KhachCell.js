@@ -5,22 +5,25 @@ import './Style.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import DetailHouse from './modalDetail/DetailHouse';
-import { useDispatch } from 'react-redux';
-import { setKhachDetail } from '../../../store/actions/Log';
+import { useDispatch, useSelector } from 'react-redux';
+import { setKhachDetail, setKhachThue } from '../../../store/actions/Log';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCashRegister, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { getKhachDetail, getKhachThue } from '../../../store/Selector';
 
 const KhachCell = (props) => {
   var count = 0;
-  const { arrKhach, arrHinh, DonVi } = props;
+  const { arrKhach, arrHinh, DonVi, loaikhach} = props;
   const [select, setSelect] = useState(0);
+  const khachDetail = useSelector(getKhachDetail);
+  const khach = useSelector(getKhachThue);
   const dispatch = useDispatch();
+  const [render, reRender] = useState(false);
 
   useEffect(() => {
     const fetchData = async (arrKhach, arrHinh) => {
-      console.log(arrHinh);
       if (arrKhach.length > 0 && arrHinh.length > 0) {
         dispatch(
           setKhachDetail({
@@ -33,19 +36,34 @@ const KhachCell = (props) => {
     };
     fetchData(arrKhach, arrHinh);
     console.log(arrKhach);
-  }, [select, arrKhach, arrHinh]);
+  }, [arrKhach, arrHinh, select]);
+
 
   const handleXacNhan = async () => {
+    arrKhach.splice(select, 1);
+    arrHinh.splice(select, 1);
     try {
       toast.loading('Data is loading!');
       const response = await axios.post('http://localhost:4000/api/remove/khach', {
-        
+        khach: khachDetail,
+        loaikhach: loaikhach
       });
       toast.dismiss();
+      await dispatch(setKhachThue({
+        khachthue: arrKhach,
+        imgKhachThue: arrHinh
+      }))
+      if (response === 'finish') {
+        toast.success('Upload Successful!');
+      } else if (response === 'error'){
+        toast.warn('Error: co loi say ra!');
+      }
+      reRender(!render);
     } catch (error) {
       console.log(error);
-      return;
     }
+
+    reRender(!render);
   }
 
   return (
@@ -61,7 +79,7 @@ const KhachCell = (props) => {
                   <button
                     className="icon-container "
                     value={count}
-                    onClick={(event) => setSelect(event.currentTarget.value)}
+                    onClick={(event) => setSelect(parseInt(event.currentTarget.value))}
                     data-bs-toggle="modal"
                     data-bs-target="#xacnhan"
                   >
@@ -73,7 +91,7 @@ const KhachCell = (props) => {
                   <button
                     className="icon-container btn"
                     value={count}
-                    onClick={(event) => setSelect(event.currentTarget.value)}
+                    onClick={(event) => setSelect(parseInt(event.currentTarget.value))}
                     type="button"
                   >
                     <FontAwesomeIcon icon={faCashRegister} style={{ scale: '1.2' }} />
@@ -163,6 +181,7 @@ const KhachCell = (props) => {
             <div className="modal-body" style={{ display: 'grid' }}>
               <button type="button" className="btn btn-primary" style={{ marginBottom: '20px' }}
                 data-bs-dismiss="modal"
+                onClick={handleXacNhan}
               >
                 Xac Nhan
               </button>
@@ -190,6 +209,7 @@ KhachCell.propTypes = {
       Sdt: PropTypes.string,
       TaiChinh: PropTypes.string,
       TenKhach: PropTypes.string,
+      MaViTri: PropTypes.string,
       diachi: PropTypes.shape({
         MaPhuong: PropTypes.string,
         MaQuan: PropTypes.string,
@@ -210,6 +230,6 @@ KhachCell.propTypes = {
       })
     )
   ),
-
-  DonVi: PropTypes.string
+  DonVi: PropTypes.string,
+  loaikhach: PropTypes.string
 };
