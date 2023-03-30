@@ -40,7 +40,8 @@ const KhachMua = (props) => {
           tenphuong,
           tenquan,
           TheLoai,
-          'KhachMua'
+          'KhachMua',
+          'Ty'
         );
         setArrKhach(khach.arrKhach);
         setArrHinh(khach.arrHinh);
@@ -69,7 +70,7 @@ const KhachMua = (props) => {
   }
 
   // console.timeEnd('khach');
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} loaikhach={'KhachMua'}/>;
+  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Ty'} loaikhach={'KhachMua'} />;
 };
 
 export default KhachMua;

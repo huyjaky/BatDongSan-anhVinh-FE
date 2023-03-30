@@ -36,7 +36,6 @@ function Upload() {
     setIsLoading(false);
   }, []);
 
-
   const fetchData = async () => {
     if (phuong.length == 0 || quan.length == 0) {
       let data = await axios.get('http://localhost:4000/api/phuongquan');

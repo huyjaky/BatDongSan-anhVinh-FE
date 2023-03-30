@@ -1,23 +1,12 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import {
-  setFetch,
-  setLoaiKhach,
-  setRe,
-  setTenPhuong,
-  setTenQuan
-} from '../../../../store/actions/Log';
-import { getLoaiKhach, getPhuongSelect, getQuanSelect } from '../../../../store/Selector';
-import Phuong from '../phuong_quan/phuong/Phuong';
-import Quan from '../phuong_quan/quan/Quan';
-import './Style.scss';
 import { FilePond, registerPlugin } from 'react-filepond';
-
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css';
+import './Style.scss';
 
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
@@ -25,8 +14,27 @@ import 'filepond/dist/filepond.min.css';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import {
+  getKhachDetail,
+  getLoaiKhach,
+  getPhuongSelect,
+  getQuanSelect
+} from '../../../../store/Selector';
+import {
+  setFetch,
+  setLoaiKhach,
+  setPhuongSelect,
+  setQuanSelect,
+  setTenPhuong,
+  setTenQuan
+} from '../../../../store/actions/Log';
+import Quan from '../../../Uploadpage/InputUpload/phuong_quan/quan/Quan';
+import Phuong from '../../../Uploadpage/InputUpload/phuong_quan/phuong/Phuong';
+import { InfinitySpin } from 'react-loader-spinner';
 
-const FormKhach = (props) => {
+const Change = (props) => {
+  const khachDetail = useSelector(getKhachDetail);
+
   const [isFinish, setIsFinish] = useState(false);
   const [TenKhach, setTenKhach] = useState('');
   const [Sdt, setSdt] = useState('');
@@ -37,80 +45,98 @@ const FormKhach = (props) => {
   const [SoPhongNgu, setSoPhongNgu] = useState('');
   const [SoPhongVeSinh, setSoPhongVeSinh] = useState('');
   const [TheLoai, setTheLoai] = useState('Nguyen Can');
+
   const [files, setFiles] = useState([]);
 
   const phuongSelect = useSelector(getPhuongSelect);
   const quanSelect = useSelector(getQuanSelect);
-  const loaikhach = useSelector(getLoaiKhach); //
   const dispatch = useDispatch();
 
-  const { Donvi } = props;
+  const { Donvi, loaikhach } = props;
   const handleOnClick = async () => {
-    if (loaikhach === 'Loai Khach') {
-      toast.warning('Vui Long Chon Loai Khach!');
-    } else if (
-      !TenKhach ||
-      !Sdt ||
-      !TenDuong ||
-      !TaiChinh ||
-      !NhuCauChiTiet ||
-      !phuongSelect ||
-      !quanSelect ||
-      !SoPhongVeSinh ||
-      !SoPhongNgu ||
-      phuongSelect === 'Phuong' ||
-      quanSelect === 'Quan'
-    ) {
-      toast.warning('Nhap Thieu Thong Tin Cua Khach Vui Long Kiem Tra Lai!');
-    } else {
-      try {
-        toast.loading('Data is loading');
-        const response = await axios.post('http://localhost:4000/api/khach', {
-          khach: loaikhach,
-          TenKhach: TenKhach,
-          Sdt: Sdt,
-          TenDuong: TenDuong,
-          Linkface: Linkface,
-          TaiChinh: TaiChinh,
-          NhuCauChiTiet: NhuCauChiTiet,
-          MaPhuong: phuongSelect,
-          MaQuan: quanSelect,
-          SoPhongNgu: SoPhongNgu,
-          SoPhongVeSinh: SoPhongVeSinh,
-          TheLoai: TheLoai
-        });
-        toast.dismiss();
-        if (response.data === 'finish') {
-          toast.success('Upload Successful!');
-          dispatch(setLoaiKhach('Loai Khach'));
-          dispatch(setTenPhuong('Phuong'));
-          dispatch(setTenQuan('Quan'));
-          setTenKhach('');
-          setSdt('');
-          setTenDuong('');
-          setLinkface('');
-          setTaiChinh('');
-          setNhuCauChiTiet('');
-          setFiles([]);
+    // if (loaikhach === 'Loai Khach') {
+    //   toast.warning('Vui Long Chon Loai Khach!');
+    // } else if (
+    //   !TenKhach ||
+    //   !Sdt ||
+    //   !TenDuong ||
+    //   !TaiChinh ||
+    //   !NhuCauChiTiet ||
+    //   !phuongSelect ||
+    //   !quanSelect ||
+    //   !SoPhongVeSinh ||
+    //   !SoPhongNgu ||
+    //   phuongSelect === 'Phuong' ||
+    //   quanSelect === 'Quan'
+    // ) {
+    //   toast.warning('Nhap Thieu Thong Tin Cua Khach Vui Long Kiem Tra Lai!');
+    // } else {
+    try {
+      toast.loading('Data is loading');
+      const response = await axios.post('http://localhost:4000/api/change/khach', {
+        khach: loaikhach,
+        MaViTri: khachDetail.khach.MaViTri,
+        MaKhach: khachDetail.khach.MaKhach,
+        MaAnhKhach: khachDetail.khach.MaAnhKhach,
+        TheLoai: TheLoai,
+        SoPhongNgu: !SoPhongNgu ? khachDetail.khach.SoPhongNgu : SoPhongNgu,
+        SoPhongVeSinh: !SoPhongVeSinh ? khachDetail.khach.SoPhongVeSinh : SoPhongVeSinh,
+        MaPhuong: phuongSelect,
+        MaQuan: quanSelect,
+        TenDuong: !TenDuong ? khachDetail.khach.diachi.TenDuong : TenDuong,
+        TenKhach: !TenKhach ? khachDetail.khach.TenKhach : TenKhach,
+        TaiChinh: !TaiChinh ? khachDetail.khach.TaiChinh : TaiChinh,
+        NhuCauChiTiet: !NhuCauChiTiet ? khachDetail.khach.NhuCauChiTiet : NhuCauChiTiet,
+        Sdt: !Sdt ? khachDetail.khach.Sdt : Sdt,
+        Linkface: !Linkface ? khachDetail.khach.Linkface : Linkface
+      });
+      toast.dismiss();
+      if (response.data === 'finish') {
+        toast.success('Upload Successful!');
+        dispatch(setLoaiKhach('Loai Khach'));
+        dispatch(setTenPhuong('Phuong'));
+        dispatch(setTenQuan('Quan'));
+        setTenKhach('');
+        setSdt('');
+        setTenDuong('');
+        setLinkface('');
+        setTaiChinh('');
+        setNhuCauChiTiet('');
+        setFiles([]);
 
-          // load lai du lieu tu server
-          dispatch(setFetch(false));
-        } else if (response.data === 'error') {
-          toast.warn('Error: co loi say ra!');
-        }
-      } catch (error) {
-        console.log(error);
+        // load lai du lieu tu server
+        dispatch(setFetch(false));
+      } else if (response.data === 'error') {
+        toast.warn('Error: co loi say ra!');
       }
+    } catch (error) {
+      console.log(error);
     }
+    // }
   };
 
+  useEffect(() => {
+    console.log(khachDetail);
+    if (khachDetail.khach) {
+      setTheLoai(khachDetail.khach.TheLoai);
+    }
+  }, [khachDetail, dispatch]);
+
+  if (!khachDetail.khach) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <InfinitySpin width="200" color="#4fa94d" />
+      </div>
+    );
+  }
+
   return (
-    <form className="form_khach" method="get" action="/upoad/">
+    <form className="form_change" method="get" action="/upoad/">
       <div className="input-group mb-3">
         <input
           type="text"
           className="form-control"
-          placeholder="Ten Khach"
+          placeholder={khachDetail.khach.TenKhach}
           aria-label="Username"
           value={TenKhach}
           onChange={(event) => setTenKhach(event.target.value)}
@@ -120,7 +146,7 @@ const FormKhach = (props) => {
           type="number"
           className="form-control"
           name="Sdt"
-          placeholder="Sdt"
+          placeholder={khachDetail.khach.Sdt}
           aria-label="Server"
           required
           value={Sdt}
@@ -134,7 +160,7 @@ const FormKhach = (props) => {
           name="TenDuong"
           type="text"
           className="form-control"
-          placeholder="Ten Duong"
+          placeholder={khachDetail.khach.diachi.TenDuong}
           aria-label="Username"
           value={TenDuong}
           onChange={(event) => setTenDuong(event.target.value)}
@@ -146,7 +172,7 @@ const FormKhach = (props) => {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="basic-url" className="form-label text-light">
+        <label htmlFor="basic-url" className="form-label text-black">
           Link Face
         </label>
         <div className="input-group">
@@ -158,12 +184,13 @@ const FormKhach = (props) => {
             className="form-control"
             id="basic-url"
             aria-describedby="basic-addon3"
+            placeholder={khachDetail.Linkface}
             value={Linkface}
             onChange={(event) => setLinkface(event.target.value)}
           />
         </div>
       </div>
-      <div className="form-text text-light">Tai Chinh</div>
+      <div className="form-text text-black">Tai Chinh</div>
 
       <div className="input-group mb-3">
         <span className="input-group-text">VND</span>
@@ -184,8 +211,8 @@ const FormKhach = (props) => {
           type="number"
           className="form-control"
           name="SoPhongNgu"
-          placeholder="So Phong Ngu"
           aria-label="Username"
+          placeholder={khachDetail.khach.SoPhongNgu}
           value={SoPhongNgu}
           onChange={(event) => setSoPhongNgu(event.target.value)}
         />
@@ -194,7 +221,7 @@ const FormKhach = (props) => {
           type="number"
           className="form-control"
           name="SoPhongVeSinh"
-          placeholder="So Phong Ve Sinh"
+          placeholder={khachDetail.khach.SoPhongVeSinh}
           aria-label="Server"
           value={SoPhongVeSinh}
           onChange={(event) => setSoPhongVeSinh(event.target.value)}
@@ -206,10 +233,11 @@ const FormKhach = (props) => {
         aria-label="Default select example"
         style={{ marginBottom: '20px' }}
         onClick={(event) => setTheLoai(event.target.value)}
-        defaultValue="Can Ho"
+        defaultValue={khachDetail.TheLoai}
       >
-        <option value="Can Ho">Can Ho</option>
+
         <option value="Nguyen Can">Nguyen Can</option>
+        <option value="Can Ho">Can Ho</option>
       </select>
 
       <div className="input-group">
@@ -219,6 +247,7 @@ const FormKhach = (props) => {
           required
           name="NhuCau"
           aria-label="With textarea"
+          placeholder={khachDetail.khach.NhuCauChiTiet}
           value={NhuCauChiTiet}
           onChange={(event) => setNhuCauChiTiet(event.target.value)}
         ></textarea>
@@ -253,7 +282,7 @@ const FormKhach = (props) => {
             allowMultiple={true}
             maxFiles={30}
             maxParallelUploads={30}
-            server="http://localhost:4000/api/img"
+            server="http://localhost:4000/api/change/img"
             name="files" /* sets the file input name, it's filepond by default */
             labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
             acceptedFileTypes={[
@@ -277,8 +306,10 @@ const FormKhach = (props) => {
   );
 };
 
-export default FormKhach;
+export default Change;
 
-FormKhach.propTypes = {
-  Donvi: PropTypes.string
+Change.propTypes = {
+  Donvi: PropTypes.string,
+  loaikhach: PropTypes.string
 };
+

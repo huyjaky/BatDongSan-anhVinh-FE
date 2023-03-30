@@ -1,21 +1,34 @@
+import { faCashRegister, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import PropTypes from 'prop-types';
-import './Style.scss';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import DetailHouse from './modalDetail/DetailHouse';
+import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { setKhachDetail, setKhachThue } from '../../../store/actions/Log';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCashRegister, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import {
+  setKhachBan,
+  setKhachChoThue,
+  setKhachDetail,
+  setKhachMua,
+  setKhachThue,
+  setPhuongSelect,
+  setQuan,
+  setQuanSelect,
+  setTenPhuong,
+  setTenQuan
+} from '../../../store/actions/Log';
 import { getKhachDetail, getKhachThue } from '../../../store/Selector';
+import Change from './modalDetail/Change';
+import DetailHouse from './modalDetail/DetailHouse';
+import './Style.scss';
 
 const KhachCell = (props) => {
   var count = 0;
-  const { arrKhach, arrHinh, DonVi, loaikhach} = props;
+  const { arrKhach, arrHinh, DonVi, loaikhach } = props;
   const [select, setSelect] = useState(0);
   const khachDetail = useSelector(getKhachDetail);
   const khach = useSelector(getKhachThue);
@@ -38,10 +51,41 @@ const KhachCell = (props) => {
     console.log(arrKhach);
   }, [arrKhach, arrHinh, select]);
 
-
   const handleXacNhan = async () => {
-    arrKhach.splice(select, 1);
-    arrHinh.splice(select, 1);
+    await arrKhach.splice(select, 1);
+    await arrHinh.splice(select, 1);
+
+    // chia loai dia xoa trong dia chi local toan cuc
+    if (loaikhach === 'KhachThue') {
+      dispatch(
+        setKhachThue({
+          khachthue: arrKhach,
+          imgKhachThue: arrHinh
+        })
+      );
+    } else if (loaikhach === 'KhachChoThue') {
+      dispatch(
+        setKhachChoThue({
+          khachchothue: arrKhach,
+          imgKhachChoThue: arrHinh
+        })
+      );
+    } else if (loaikhach === 'KhachMua') {
+      dispatch(
+        setKhachMua({
+          khachmua: arrKhach,
+          imgKhachMua: arrHinh
+        })
+      );
+    } else if (loaikhach === 'KhachBan') {
+      dispatch(
+        setKhachBan({
+          khachban: arrKhach,
+          imgKhachBan: arrHinh
+        })
+      );
+    }
+
     try {
       toast.loading('Data is loading!');
       const response = await axios.post('http://localhost:4000/api/remove/khach', {
@@ -49,13 +93,15 @@ const KhachCell = (props) => {
         loaikhach: loaikhach
       });
       toast.dismiss();
-      await dispatch(setKhachThue({
-        khachthue: arrKhach,
-        imgKhachThue: arrHinh
-      }))
-      if (response === 'finish') {
+      await dispatch(
+        setKhachThue({
+          khachthue: arrKhach,
+          imgKhachThue: arrHinh
+        })
+      );
+      if (response.data === 'finish') {
         toast.success('Upload Successful!');
-      } else if (response === 'error'){
+      } else if (response.data === 'error') {
         toast.warn('Error: co loi say ra!');
       }
       reRender(!render);
@@ -64,7 +110,15 @@ const KhachCell = (props) => {
     }
 
     reRender(!render);
-  }
+  };
+
+  const handleOnClick_change = (event) => {
+    setSelect(parseInt(event.currentTarget.value));
+    dispatch(setQuanSelect(arrKhach[select].diachi.MaQuan));
+    dispatch(setTenQuan(arrKhach[select].diachi.quan.TenQuan));
+    dispatch(setPhuongSelect(arrKhach[select].diachi.MaPhuong));
+    dispatch(setTenPhuong(arrKhach[select].diachi.phuong.TenPhuong));
+  };
 
   return (
     <>
@@ -79,7 +133,7 @@ const KhachCell = (props) => {
                   <button
                     className="icon-container "
                     value={count}
-                    onClick={(event) => setSelect(parseInt(event.currentTarget.value))}
+                    onClick={(event) => setSelect(event.currentTarget.value)}
                     data-bs-toggle="modal"
                     data-bs-target="#xacnhan"
                   >
@@ -91,8 +145,10 @@ const KhachCell = (props) => {
                   <button
                     className="icon-container btn"
                     value={count}
-                    onClick={(event) => setSelect(parseInt(event.currentTarget.value))}
+                    onClick={(event) => handleOnClick_change(event)}
                     type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#chinhsua"
                   >
                     <FontAwesomeIcon icon={faCashRegister} style={{ scale: '1.2' }} />
                   </button>
@@ -179,7 +235,10 @@ const KhachCell = (props) => {
               ></button>
             </div>
             <div className="modal-body" style={{ display: 'grid' }}>
-              <button type="button" className="btn btn-primary" style={{ marginBottom: '20px' }}
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{ marginBottom: '20px' }}
                 data-bs-dismiss="modal"
                 onClick={handleXacNhan}
               >
@@ -189,6 +248,39 @@ const KhachCell = (props) => {
                 Huy Bo
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade"
+        id="chinhsua"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Thay doi
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <div className="form-container">
+                <Change Donvi={'Trieu'} loaikhach={loaikhach} />
+              </div>
+            </div>
+            {/* <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary">Save changes</button>
+            </div> */}
           </div>
         </div>
       </div>

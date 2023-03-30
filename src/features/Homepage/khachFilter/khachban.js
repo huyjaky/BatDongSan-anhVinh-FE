@@ -31,6 +31,7 @@ const KhachBan = (props) => {
       if (DonVi && PriceRange && khachban) {
         const khach = await fileFilter(
           DonVi,
+
           PriceRange,
           khachban,
           SoPhongNgu,
@@ -38,7 +39,8 @@ const KhachBan = (props) => {
           tenphuong,
           tenquan,
           TheLoai,
-          'KhachBan'
+          'KhachBan',
+          'Ty'
         );
         setArrKhach(khach.arrKhach);
         setArrHinh(khach.arrHinh);

@@ -38,7 +38,8 @@ const KhachChoThue = (props) => {
           tenphuong,
           tenquan,
           TheLoai,
-          'KhachChoThue'
+          'KhachChoThue',
+          'Trieu'
         );
         await setArrKhach(khach.arrKhach);
         await setArrHinh(khach.arrHinh);
@@ -66,7 +67,9 @@ const KhachChoThue = (props) => {
       </div>
     );
   }
-  return <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Trieu'} loaikhach={'KhachChoThue'}/>;
+  return (
+    <KhachCell arrHinh={arrHinh} arrKhach={arrKhach} DonVi={'Trieu'} loaikhach={'KhachChoThue'} />
+  );
 };
 
 export default KhachChoThue;
