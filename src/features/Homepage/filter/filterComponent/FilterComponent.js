@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPhuong, setQuan } from '../../../../store/actions/Log';
+import { setPhuong, setPhuongQuan, setQuan } from '../../../../store/actions/Log';
 import { getPhuong, getQuan } from '../../../../store/Selector';
 import Phuong from '../../../Uploadpage/InputUpload/phuong_quan/phuong/Phuong';
 import Quan from '../../../Uploadpage/InputUpload/phuong_quan/quan/Quan';
@@ -22,6 +22,7 @@ const FilterComponent = () => {
       let data = await axios.get('http://localhost:4000/api/phuongquan');
       await dispatch(setPhuong(data.data.phuong));
       await dispatch(setQuan(data.data.quan));
+      await dispatch(setPhuongQuan(data.data.phuongquan))
     }
   };
 

@@ -4,6 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getIsLogIn } from '../../store/Selector';
+import OffCanvas from '../offCanvas/OffCanvas';
 
 const Navbar = () => {
   let status = useSelector(getIsLogIn);
@@ -70,7 +71,9 @@ const Navbar = () => {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body></Offcanvas.Body>
+        <Offcanvas.Body>
+          <OffCanvas />
+        </Offcanvas.Body>
       </Offcanvas>
     </>
   );

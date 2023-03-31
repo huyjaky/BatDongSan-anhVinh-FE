@@ -235,7 +235,6 @@ const Change = (props) => {
         onClick={(event) => setTheLoai(event.target.value)}
         defaultValue={khachDetail.TheLoai}
       >
-
         <option value="Nguyen Can">Nguyen Can</option>
         <option value="Can Ho">Can Ho</option>
       </select>
@@ -312,4 +311,3 @@ Change.propTypes = {
   Donvi: PropTypes.string,
   loaikhach: PropTypes.string
 };
-

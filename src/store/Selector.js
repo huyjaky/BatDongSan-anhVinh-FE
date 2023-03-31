@@ -1,4 +1,5 @@
 export const getIsLogIn = (state) => state.LoginReducer.isLogIn;
+export const getUser = (state) => state.LoginReducer.User;
 
 export const getPhuong = (state) => state.InputUploadReducer.phuong;
 export const getQuan = (state) => state.InputUploadReducer.quan;

@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 import {
   setFetch,
   setLoaiKhach,
+  setPhuongSelect,
+  setQuanSelect,
   setRe,
   setTenPhuong,
   setTenQuan
@@ -25,6 +27,7 @@ import 'filepond/dist/filepond.min.css';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import { useEffect } from 'react';
 
 const FormKhach = (props) => {
   const [isFinish, setIsFinish] = useState(false);
@@ -103,6 +106,13 @@ const FormKhach = (props) => {
       }
     }
   };
+
+  useEffect(() => {
+    dispatch(setTenPhuong('Phuong'));
+    dispatch(setTenQuan('Quan'));
+    dispatch(setPhuongSelect(''));
+    dispatch(setQuanSelect(''));
+  }, []);
 
   return (
     <form className="form_khach" method="get" action="/upoad/">

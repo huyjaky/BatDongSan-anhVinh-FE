@@ -2,6 +2,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
+import { useDispatch } from 'react-redux';
+import bcrypt from 'bcryptjs';
 
 import Complete from './Complete';
 import NotComplete from './NotComplete';
@@ -10,6 +12,7 @@ const SuccessLogin = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [typeLog, setTypeLog] = useState(true);
   let { TaiKhoan, MatKhau } = props;
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
     try {
@@ -18,10 +21,16 @@ const SuccessLogin = (props) => {
         MatKhau: MatKhau
       });
       setIsLoading(false);
-      console.log(data);
       if (data.data.errCode === 1) {
         setTypeLog(false);
       }
+      let salt = bcrypt.genSaltSync(10);
+      var hashMK = bcrypt.hashSync(MatKhau, salt);
+      var hashPQ = bcrypt.hashSync(data.data.MaPQ, salt);
+
+      sessionStorage.setItem('MatKhau', hashMK);
+      sessionStorage.setItem('TaiKhoan', TaiKhoan);
+      sessionStorage.setItem('PQ', hashPQ);
     } catch (error) {
       setIsLoading(false);
       setTypeLog(false);

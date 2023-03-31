@@ -8,7 +8,8 @@ import {
   setKhachBan,
   setKhachChoThue,
   setKhachMua,
-  setKhachThue
+  setKhachThue,
+  setUser
 } from '../../store/actions/Log';
 import {
   getFetch,
@@ -19,6 +20,7 @@ import {
 } from '../../store/Selector';
 import Filter from './filter/Filter';
 import './Style.scss';
+import bcrypt from 'bcryptjs';
 
 const Homepage = () => {
   const [activeItem, setActiveItem] = useState(0);
@@ -43,8 +45,9 @@ const Homepage = () => {
         await dispatch(setKhachMua(allkhach.data.khachmua));
         await dispatch(setKhachChoThue(allkhach.data.khachchothue));
         await dispatch(setKhachBan(allkhach.data.khachban));
+        const PQ = await bcrypt.compareSync('1', sessionStorage.getItem('PQ'));
+        dispatch(setUser(PQ));
         dispatch(setFetch(true));
-        console.log(allkhach, 'homepage');
       }
       setIsLoading(false);
     } catch (error) {

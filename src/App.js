@@ -18,6 +18,7 @@ import FormKhach from './features/Uploadpage/InputUpload/formKhach/FormKhach';
 import Upload from './features/Uploadpage/Upload';
 import { setLogIn } from './store/actions/Log';
 import { getIsLogIn } from './store/Selector';
+import bcrypt from 'bcryptjs';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,13 +60,17 @@ function App() {
                   <Route path="/homepage/khachchothue" element={<KhachChoThue />} />
                   <Route path="/homepage/khachmua" element={<KhachMua />} />
                 </Route>
-                <Route path="/upload" element={<Upload />}>
-                  <Route path="/upload/khachthue" element={<FormKhach Donvi={'Trieu'} />} />
-                  <Route path="/upload/khachmua" element={<FormKhach Donvi={'Ty'} />} />
-                  <Route path="/upload/khachban" element={<FormKhach Donvi={'Ty'} />} />
-                  <Route path="/upload/khachchothue" element={<FormKhach Donvi={'Trieu'} />} />
-                  <Route path="/upload/" element={<FormKhach Donvi={'Trieu'} />} />
-                </Route>
+                {bcrypt.compareSync('1', sessionStorage.getItem('PQ')) ? (
+                  <Route path="/upload" element={<Upload />}>
+                    <Route path="/upload/khachthue" element={<FormKhach Donvi={'Trieu'} />} />
+                    <Route path="/upload/khachmua" element={<FormKhach Donvi={'Ty'} />} />
+                    <Route path="/upload/khachban" element={<FormKhach Donvi={'Ty'} />} />
+                    <Route path="/upload/khachchothue" element={<FormKhach Donvi={'Trieu'} />} />
+                    <Route path="/upload/" element={<FormKhach Donvi={'Trieu'} />} />
+                  </Route>
+                ) : (
+                  <Route />
+                )}
               </>
             ) : (
               <>

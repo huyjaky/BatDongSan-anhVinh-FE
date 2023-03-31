@@ -1,9 +1,15 @@
 const initState = {
-  isLogIn: false
+  isLogIn: false,
+  User: false
 };
 
 const LoginReducer = (state = initState, action) => {
   switch (action.type) {
+    case 'SET_USER':
+      return {
+        ...state,
+        User: action.payload
+      };
     case 'SET_LOGIN':
       return {
         ...state,

@@ -5,6 +5,13 @@ export const setLogIn = (current) => {
   };
 };
 
+export const setUser = (current) => {
+  return {
+    type: 'SET_USER',
+    payload: current
+  };
+};
+
 export const setPhuong = (current) => {
   return {
     type: 'SET_PHUONG',

@@ -21,7 +21,7 @@ import {
   setTenPhuong,
   setTenQuan
 } from '../../../store/actions/Log';
-import { getKhachDetail, getKhachThue } from '../../../store/Selector';
+import { getKhachDetail, getKhachThue, getUser } from '../../../store/Selector';
 import Change from './modalDetail/Change';
 import DetailHouse from './modalDetail/DetailHouse';
 import './Style.scss';
@@ -34,6 +34,7 @@ const KhachCell = (props) => {
   const khach = useSelector(getKhachThue);
   const dispatch = useDispatch();
   const [render, reRender] = useState(false);
+  const PQ = useSelector(getUser);
 
   useEffect(() => {
     const fetchData = async (arrKhach, arrHinh) => {
@@ -129,30 +130,39 @@ const KhachCell = (props) => {
             count = index;
             return (
               <div className="khach" key={index}>
-                <div className="function-remove">
-                  <button
-                    className="icon-container "
-                    value={count}
-                    onClick={(event) => setSelect(event.currentTarget.value)}
-                    data-bs-toggle="modal"
-                    data-bs-target="#xacnhan"
-                  >
-                    <FontAwesomeIcon icon={faTrash} style={{ color: '#ff2e2e', scale: '1.2' }} />
-                  </button>
-                </div>
+                {PQ ? (
+                  <>
+                    <div className="function-remove">
+                      <button
+                        className="icon-container "
+                        value={count}
+                        onClick={(event) => setSelect(event.currentTarget.value)}
+                        data-bs-toggle="modal"
+                        data-bs-target="#xacnhan"
+                      >
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          style={{ color: '#ff2e2e', scale: '1.2' }}
+                        />
+                      </button>
+                    </div>
 
-                <div className="function-custom">
-                  <button
-                    className="icon-container btn"
-                    value={count}
-                    onClick={(event) => handleOnClick_change(event)}
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#chinhsua"
-                  >
-                    <FontAwesomeIcon icon={faCashRegister} style={{ scale: '1.2' }} />
-                  </button>
-                </div>
+                    <div className="function-custom">
+                      <button
+                        className="icon-container btn"
+                        value={count}
+                        onClick={(event) => handleOnClick_change(event)}
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#chinhsua"
+                      >
+                        <FontAwesomeIcon icon={faCashRegister} style={{ scale: '1.2' }} />
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div></div>
+                )}
 
                 {/* tao ra slide anh */}
                 <AwesomeSlider animation="cubeAnimation" key={index}>

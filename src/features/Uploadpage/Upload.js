@@ -42,6 +42,7 @@ function Upload() {
       await dispatch(setPhuong(data.data.phuong));
       await dispatch(setQuan(data.data.quan));
       await dispatch(setPhuongQuan(data.data.phuongquan));
+      console.log(data);
     }
   };
 

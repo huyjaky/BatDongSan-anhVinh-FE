@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setLogIn } from '../../../../store/actions/Log';
+import { setLogIn, setUser } from '../../../../store/actions/Log';
 import { getIsLogIn } from '../../../../store/Selector';
 
 const Complete = () => {
@@ -16,6 +16,7 @@ const Complete = () => {
 
   useEffect(() => {
     setLog();
+    console.log(sessionStorage.getItem('User'));
   }, [useSelector(getIsLogIn)]);
 
   return (
