@@ -1,7 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPhuongSelect, setQuanSelect, setTenPhuong, setTenQuan } from '../../../../../store/actions/Log';
-import { getPhuong, getPhuongQuan, getPhuongSelect, getQuan, getQuanSelect, getTenPhuong, getTenQuan } from '../../../../../store/Selector';
+import {
+  setPhuongSelect,
+  setQuanSelect,
+  setTenPhuong,
+  setTenQuan
+} from '../../../../../store/actions/Log';
+import {
+  getPhuong,
+  getPhuongQuan,
+  getPhuongSelect,
+  getQuan,
+  getQuanSelect,
+  getTenPhuong,
+  getTenQuan
+} from '../../../../../store/Selector';
 import './Style.scss';
 
 const Quan = () => {
@@ -10,7 +23,7 @@ const Quan = () => {
   const phuongquan = useSelector(getPhuongQuan);
   const quanSelect = useSelector(getQuanSelect);
   const tenquan = useSelector(getTenQuan);
-  const quan = useSelector(getQuan)
+  const quan = useSelector(getQuan);
   const dispatch = useDispatch();
 
   const handleOnClick = async (item) => {
@@ -23,7 +36,7 @@ const Quan = () => {
   const handleOnClick2 = async (item) => {
     dispatch(setTenQuan(item.TenQuan));
     dispatch(setQuanSelect(item.MaQuan));
-  }
+  };
 
   return (
     <div className="dropdown" style={{ height: '100%' }}>
@@ -35,20 +48,23 @@ const Quan = () => {
       >
         {tenquan}
       </button>
-      <ul
-        className="dropdown-menu"
-        style={{ width: '100%' }}
-      >
+      <ul className="dropdown-menu" style={{ width: '100%' }}>
         <li>
-          <a className="dropdown-item" href="#" onClick={(event) => handleOnClick(
-            {phuong: { TenPhuong: 'Phuong', MaPhuong: 'Phuong' },
-            quan:{TenQuan: 'Quan', MaQuan: 'Quan'} }
-          )}>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={(event) =>
+              handleOnClick({
+                phuong: { TenPhuong: 'Phuong', MaPhuong: 'Phuong' },
+                quan: { TenQuan: 'Quan', MaQuan: 'Quan' }
+              })
+            }
+          >
             Quan
           </a>
         </li>
-        {(quanSelect === "Phuong" || quanSelect === "") ?
-          (quan &&
+        {quanSelect === 'Quan' || quanSelect === ''
+          ? quan &&
             quan.map((item, index) => {
               return (
                 <li key={index}>
@@ -57,9 +73,8 @@ const Quan = () => {
                   </a>
                 </li>
               );
-            }))
-          :
-          (quan &&
+            })
+          : quan &&
             quan.map((item, index) => {
               if (item.MaQuan === quanSelect) {
                 return (
@@ -68,16 +83,12 @@ const Quan = () => {
                       {item.TenQuan}
                     </a>
                   </li>
-                )
+                );
               }
-            })
-          )
-        }
+            })}
       </ul>
     </div>
   );
 };
-
-
 
 export default Quan;

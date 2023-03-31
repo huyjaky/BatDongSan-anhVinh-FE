@@ -22,7 +22,7 @@ const FilterComponent = () => {
       let data = await axios.get('http://localhost:4000/api/phuongquan');
       await dispatch(setPhuong(data.data.phuong));
       await dispatch(setQuan(data.data.quan));
-      await dispatch(setPhuongQuan(data.data.phuongquan))
+      await dispatch(setPhuongQuan(data.data.phuongquan));
     }
   };
 

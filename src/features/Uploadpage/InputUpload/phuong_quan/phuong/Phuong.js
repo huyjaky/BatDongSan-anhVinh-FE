@@ -1,19 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './Style.scss';
 import { useEffect, useState } from 'react';
-import { getPhuong, getPhuongQuan, getPhuongSelect, getQuanSelect, getTenPhuong } from '../../../../../store/Selector';
-import { setPhuongSelect, setQuan, setQuanSelect, setTenPhuong, setTenQuan } from '../../../../../store/actions/Log';
+import {
+  getPhuong,
+  getPhuongQuan,
+  getPhuongSelect,
+  getQuanSelect,
+  getTenPhuong
+} from '../../../../../store/Selector';
+import {
+  setPhuongSelect,
+  setQuan,
+  setQuanSelect,
+  setTenPhuong,
+  setTenQuan
+} from '../../../../../store/actions/Log';
 
 const Phuong = () => {
-  const phuong = useSelector(getPhuong);
   const tenphuong = useSelector(getTenPhuong);
   const phuongSelect = useSelector(getPhuongSelect);
   const phuongquan = useSelector(getPhuongQuan);
   const quanSelect = useSelector(getQuanSelect);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-  }, [phuongSelect])
+  useEffect(() => {}, [phuongSelect]);
 
   const handleOnClick = (item) => {
     dispatch(setTenPhuong(item.phuong.TenPhuong));
@@ -21,7 +31,6 @@ const Phuong = () => {
     dispatch(setQuanSelect(item.quan.MaQuan));
     dispatch(setTenQuan(item.quan.TenQuan));
   };
-
 
   return (
     <div className="dropdown" style={{ height: '100%' }}>
@@ -38,15 +47,22 @@ const Phuong = () => {
         style={{ width: '100%', height: '40vh', overflow: 'scroll', overflowX: 'hidden' }}
       >
         <li>
-          <a className="dropdown-item" href="#" onClick={(event) => handleOnClick(
-            {phuong: { TenPhuong: 'Phuong', MaPhuong: 'Phuong' },
-            quan:{TenQuan: 'Quan', MaQuan: 'Quan'} }
-          )}>
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={(event) =>
+              handleOnClick({
+                phuong: { TenPhuong: 'Phuong', MaPhuong: 'Phuong' },
+                quan: { TenQuan: 'Quan', MaQuan: 'Quan' }
+              })
+            }
+          >
             Phuong
           </a>
         </li>
-        {((phuongSelect === "Phuong" || phuongSelect === "") && (quanSelect === 'Quan' || quanSelect === '')) ?
-          (phuongquan &&
+        {(phuongSelect === 'Phuong' || phuongSelect === '') &&
+        (quanSelect === 'Quan' || quanSelect === '')
+          ? phuongquan &&
             phuongquan.map((item, index) => {
               return (
                 <li key={index}>
@@ -55,9 +71,8 @@ const Phuong = () => {
                   </a>
                 </li>
               );
-            }))
-          :
-          (phuongquan &&
+            })
+          : phuongquan &&
             phuongquan.map((item, index) => {
               if (item.quan.MaQuan === quanSelect) {
                 return (
@@ -66,11 +81,9 @@ const Phuong = () => {
                       {item.phuong.TenPhuong}
                     </a>
                   </li>
-                )
+                );
               }
-            })
-          )
-        }
+            })}
       </ul>
     </div>
   );
