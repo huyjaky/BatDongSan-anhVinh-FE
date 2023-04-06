@@ -19,7 +19,7 @@ const FilterComponent = () => {
 
   const fetchData = async () => {
     if (phuong.length == 0 || quan.length == 0) {
-      let data = await axios.get('http://localhost:4000/api/phuongquan');
+      let data = await axios.get('http://112.213.89.28:4001/api/phuongquan');
       await dispatch(setPhuong(data.data.phuong));
       await dispatch(setQuan(data.data.quan));
       await dispatch(setPhuongQuan(data.data.phuongquan));

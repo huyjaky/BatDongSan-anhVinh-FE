@@ -40,7 +40,7 @@ const Homepage = () => {
   const fetchData = async () => {
     try {
       if (isFetch == false) {
-        const allkhach = await axios.get('http://localhost:4000/api/getallkhach');
+        const allkhach = await axios.get('http://112.213.89.28:4001/api/getallkhach');
         await dispatch(setKhachThue(allkhach.data.khachthue));
         await dispatch(setKhachMua(allkhach.data.khachmua));
         await dispatch(setKhachChoThue(allkhach.data.khachchothue));
