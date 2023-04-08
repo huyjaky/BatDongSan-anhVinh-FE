@@ -96,7 +96,7 @@ const KhachCell = (props) => {
 
     try {
       toast.loading('Data is loading!');
-      const response = await axios.post('http://112.213.89.28:4001/api/remove/khach', {
+      const response = await axios.post('http://localhost:4000/api/remove/khach', {
         khach: khachDetail,
         loaikhach: loaikhach
       });
