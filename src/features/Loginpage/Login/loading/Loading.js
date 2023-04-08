@@ -16,7 +16,7 @@ const SuccessLogin = (props) => {
 
   const fetchData = async () => {
     try {
-      let data = await axios.post('http://localhost:4000/api/login', {
+      let data = await axios.post('http://112.213.89.28:4500/api/login', {
         TaiKhoan: TaiKhoan,
         MatKhau: MatKhau
       });

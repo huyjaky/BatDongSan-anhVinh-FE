@@ -68,7 +68,7 @@ const FormKhach = (props) => {
     } else {
       try {
         toast.loading('Data is loading');
-        const response = await axios.post('http://localhost:4000/api/khach', {
+        const response = await axios.post('http://112.213.89.28:4500/api/khach', {
           khach: loaikhach,
           TenKhach: TenKhach,
           Sdt: Sdt,
@@ -263,7 +263,7 @@ const FormKhach = (props) => {
             allowMultiple={true}
             maxFiles={30}
             maxParallelUploads={30}
-            server="http://localhost:4000/api/img"
+            server="http://112.213.89.28:4500/api/img"
             name="files" /* sets the file input name, it's filepond by default */
             labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
             acceptedFileTypes={[
