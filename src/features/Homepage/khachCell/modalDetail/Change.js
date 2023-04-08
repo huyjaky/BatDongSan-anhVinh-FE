@@ -1,9 +1,9 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { FilePond } from 'react-filepond';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { FilePond, registerPlugin } from 'react-filepond';
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css';
 import './Style.scss';
@@ -11,31 +11,16 @@ import './Style.scss';
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
 // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import {
-  getKhachDetail,
-  getLoaiKhach,
-  getPhuongSelect,
-  getQuanSelect
-} from '../../../../store/Selector';
-import {
-  setFetch,
-  setLoaiKhach,
-  setPhuongSelect,
-  setQuanSelect,
-  setTenPhuong,
-  setTenQuan
-} from '../../../../store/actions/Log';
-import Quan from '../../../Uploadpage/InputUpload/phuong_quan/quan/Quan';
-import Phuong from '../../../Uploadpage/InputUpload/phuong_quan/phuong/Phuong';
 import { InfinitySpin } from 'react-loader-spinner';
+import { getKhachDetail, getPhuongSelect, getPhuongSelect2, getQuanSelect, getQuanSelect2 } from '../../../../store/Selector';
+import { setFetch, setLoaiKhach, setTenPhuong, setTenQuan } from '../../../../store/actions/Log';
+import Phuong2 from './phuong_quan/phuong/Phuong2';
+import Quan2 from './phuong_quan/quan/Quan2';
 
 const Change = (props) => {
   const khachDetail = useSelector(getKhachDetail);
 
-  const [isFinish, setIsFinish] = useState(false);
   const [TenKhach, setTenKhach] = useState('');
   const [Sdt, setSdt] = useState('');
   const [TenDuong, setTenDuong] = useState('');
@@ -48,29 +33,13 @@ const Change = (props) => {
 
   const [files, setFiles] = useState([]);
 
-  const phuongSelect = useSelector(getPhuongSelect);
-  const quanSelect = useSelector(getQuanSelect);
+  const phuongSelect = useSelector(getPhuongSelect2);
+  const quanSelect = useSelector(getQuanSelect2);
+
   const dispatch = useDispatch();
 
   const { Donvi, loaikhach } = props;
   const handleOnClick = async () => {
-    // if (loaikhach === 'Loai Khach') {
-    //   toast.warning('Vui Long Chon Loai Khach!');
-    // } else if (
-    //   !TenKhach ||
-    //   !Sdt ||
-    //   !TenDuong ||
-    //   !TaiChinh ||
-    //   !NhuCauChiTiet ||
-    //   !phuongSelect ||
-    //   !quanSelect ||
-    //   !SoPhongVeSinh ||
-    //   !SoPhongNgu ||
-    //   phuongSelect === 'Phuong' ||
-    //   quanSelect === 'Quan'
-    // ) {
-    //   toast.warning('Nhap Thieu Thong Tin Cua Khach Vui Long Kiem Tra Lai!');
-    // } else {
     try {
       toast.loading('Data is loading');
       const response = await axios.post('http://localhost:4000/api/change/khach', {
@@ -166,8 +135,8 @@ const Change = (props) => {
           onChange={(event) => setTenDuong(event.target.value)}
         />
         <div className="danhsach_quanhuyen">
-          <Quan />
-          <Phuong />
+          <Quan2 />
+          <Phuong2 />
         </div>
       </div>
 
@@ -233,8 +202,7 @@ const Change = (props) => {
         aria-label="Default select example"
         style={{ marginBottom: '20px' }}
         onClick={(event) => setTheLoai(event.target.value)}
-        defaultValue={khachDetail.TheLoai}
-      >
+        defaultValue={khachDetail.TheLoai}>
         <option value="Nguyen Can">Nguyen Can</option>
         <option value="Can Ho">Can Ho</option>
       </select>
@@ -248,8 +216,7 @@ const Change = (props) => {
           aria-label="With textarea"
           placeholder={khachDetail.khach.NhuCauChiTiet}
           value={NhuCauChiTiet}
-          onChange={(event) => setNhuCauChiTiet(event.target.value)}
-        ></textarea>
+          onChange={(event) => setNhuCauChiTiet(event.target.value)}></textarea>
       </div>
 
       <div className="submit_form" style={{ marginTop: '20px' }}>
@@ -258,7 +225,7 @@ const Change = (props) => {
           style={{ width: '100%' }}
           type="button"
           onClick={handleOnClick}
-        >
+          data-bs-dismiss="modal">
           Submit
         </button>
       </div>
@@ -273,8 +240,7 @@ const Change = (props) => {
             display: 'flex',
             flexDirection: 'column',
             alignContent: 'center'
-          }}
-        >
+          }}>
           <FilePond
             files={files}
             onupdatefiles={setFiles}

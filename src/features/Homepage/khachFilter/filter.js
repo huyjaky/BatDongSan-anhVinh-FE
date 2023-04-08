@@ -102,6 +102,12 @@ export const fileFilter = async (
         arrKhach4 = [...arrKhach4, item];
         arrHinh4 = [...arrHinh4, khach_in.img[index]];
       } else if (
+        item.diachi.phuong.TenPhuong === tenphuong &&
+        item.diachi.quan.TenQuan === tenquan
+      ) {
+        arrKhach4 = [...arrKhach4, item];
+        arrHinh4 = [...arrHinh4, khach_in.img[index]];
+      } else if (
         item.diachi.phuong.TenPhuong === tenphuong ||
         item.diachi.quan.TenQuan === tenquan
       ) {

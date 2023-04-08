@@ -9,6 +9,7 @@ import { InfinitySpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { getKhachDetail, getKhachThue, getUser } from '../../../store/Selector';
 import {
   setKhachBan,
   setKhachChoThue,
@@ -16,20 +17,22 @@ import {
   setKhachMua,
   setKhachThue,
   setPhuongSelect,
-  setQuan,
+  setPhuongSelect2,
   setQuanSelect,
+  setQuanSelect2,
   setTenPhuong,
-  setTenQuan
+  setTenPhuong2,
+  setTenQuan,
+  setTenQuan2
 } from '../../../store/actions/Log';
-import { getKhachDetail, getKhachThue, getUser } from '../../../store/Selector';
+import './Style.scss';
 import Change from './modalDetail/Change';
 import DetailHouse from './modalDetail/DetailHouse';
-import './Style.scss';
 
 const KhachCell = (props) => {
   var count = 0;
   const { arrKhach, arrHinh, DonVi, loaikhach } = props;
-  const [select, setSelect] = useState(0);
+  const [select, setSelect] = useState();
   const khachDetail = useSelector(getKhachDetail);
   const khach = useSelector(getKhachThue);
   const dispatch = useDispatch();
@@ -46,6 +49,10 @@ const KhachCell = (props) => {
             hinh: arrHinh[select]
           })
         );
+        dispatch(setPhuongSelect2(arrKhach[select].diachi.MaPhuong));
+        dispatch(setQuanSelect2(arrKhach[select].diachi.MaQuan));
+        dispatch(setTenPhuong2(arrKhach[select].diachi.phuong.TenPhuong));
+        dispatch(setTenQuan2(arrKhach[select].diachi.quan.TenQuan));
       }
     };
     fetchData(arrKhach, arrHinh);
@@ -114,12 +121,16 @@ const KhachCell = (props) => {
   };
 
   const handleOnClick_change = (event) => {
-    setSelect(parseInt(event.currentTarget.value));
-    dispatch(setQuanSelect(arrKhach[select].diachi.MaQuan));
-    dispatch(setTenQuan(arrKhach[select].diachi.quan.TenQuan));
-    dispatch(setPhuongSelect(arrKhach[select].diachi.MaPhuong));
-    dispatch(setTenPhuong(arrKhach[select].diachi.phuong.TenPhuong));
+    setSelect(event.currentTarget.value);
   };
+
+  if (arrKhach.length == 0 || !arrKhach) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        {/* <InfinitySpin width="200" color="#4fa94d" /> */}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -138,8 +149,7 @@ const KhachCell = (props) => {
                         value={count}
                         onClick={(event) => setSelect(event.currentTarget.value)}
                         data-bs-toggle="modal"
-                        data-bs-target="#xacnhan"
-                      >
+                        data-bs-target="#xacnhan">
                         <FontAwesomeIcon
                           icon={faTrash}
                           style={{ color: '#ff2e2e', scale: '1.2' }}
@@ -151,11 +161,11 @@ const KhachCell = (props) => {
                       <button
                         className="icon-container btn"
                         value={count}
-                        onClick={(event) => handleOnClick_change(event)}
+                        onClick={(event) => setSelect(event.currentTarget.value)}
+                        // onClick={handleOnClick_change}
                         type="button"
                         data-bs-toggle="modal"
-                        data-bs-target="#chinhsua"
-                      >
+                        data-bs-target="#chinhsua">
                         <FontAwesomeIcon icon={faCashRegister} style={{ scale: '1.2' }} />
                       </button>
                     </div>
@@ -173,8 +183,7 @@ const KhachCell = (props) => {
                           <img
                             className="img-nha"
                             src={`http://localhost:4000/api/img/path/${item.Hinh}`}
-                            alt="mota"
-                          ></img>
+                            alt="mota"></img>
                           <div className="img-text">
                             <Link to="#" className="link-text">
                               <button
@@ -182,8 +191,7 @@ const KhachCell = (props) => {
                                 value={count}
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"
-                                onClick={(event) => setSelect(event.target.value)}
-                              >
+                                onClick={(event) => setSelect(event.target.value)}>
                                 {arrKhach[count].diachi.TenDuong +
                                   ', Quan ' +
                                   arrKhach[count].diachi.quan.TenQuan +
@@ -205,8 +213,7 @@ const KhachCell = (props) => {
                             value={count}
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                            onClick={(event) => setSelect(event.target.value)}
-                          >
+                            onClick={(event) => setSelect(event.target.value)}>
                             {arrKhach[count].diachi.TenDuong +
                               ', Quan ' +
                               arrKhach[count].diachi.quan.TenQuan +
@@ -229,8 +236,7 @@ const KhachCell = (props) => {
         id="xacnhan"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -241,8 +247,7 @@ const KhachCell = (props) => {
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div className="modal-body" style={{ display: 'grid' }}>
               <button
@@ -250,8 +255,7 @@ const KhachCell = (props) => {
                 className="btn btn-primary"
                 style={{ marginBottom: '20px' }}
                 data-bs-dismiss="modal"
-                onClick={handleXacNhan}
-              >
+                onClick={handleXacNhan}>
                 Xac Nhan
               </button>
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
@@ -267,8 +271,7 @@ const KhachCell = (props) => {
         id="chinhsua"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div className="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
           <div className="modal-content">
             <div className="modal-header">
@@ -279,18 +282,13 @@ const KhachCell = (props) => {
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <div className="form-container">
                 <Change Donvi={'Trieu'} loaikhach={loaikhach} />
               </div>
             </div>
-            {/* <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save changes</button>
-            </div> */}
           </div>
         </div>
       </div>

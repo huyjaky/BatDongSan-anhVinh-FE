@@ -47,6 +47,8 @@ export const setQuanSelect = (current) => {
   };
 };
 
+
+
 export const setLoaiKhach = (current) => {
   return {
     type: 'SET_LOAIKHACH',
@@ -85,6 +87,8 @@ export const setTenQuan = (current) => {
     payload: current
   };
 };
+
+
 
 export const setTenPhuong = (current) => {
   return {
@@ -138,6 +142,35 @@ export const setSoPhongVeSinh = (current) => {
 export const setFetch = (current) => {
   return {
     type: 'SET_FETCH',
+    payload: current
+  };
+};
+
+
+export const setPhuongSelect2 = (current) => {
+  return {
+    type: 'SET_PHUONGSELECT2',
+    payload: current
+  };
+};
+
+export const setQuanSelect2 = (current) => {
+  return {
+    type: 'SET_QUANSELECT2',
+    payload: current
+  };
+};
+
+export const setTenPhuong2 = (current) => {
+  return {
+    type: 'SET_TENPHUONG2',
+    payload: current
+  };
+};
+
+export const setTenQuan2 = (current) => {
+  return {
+    type: 'SET_TENQUAN2',
     payload: current
   };
 };

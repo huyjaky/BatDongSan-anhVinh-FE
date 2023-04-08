@@ -1,38 +1,24 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setPhuongSelect,
-  setQuanSelect,
-  setTenPhuong,
-  setTenQuan
-} from '../../../../../store/actions/Log';
-import {
-  getPhuong,
-  getPhuongQuan,
-  getPhuongSelect,
-  getQuan,
-  getQuanSelect,
-  getTenPhuong,
-  getTenQuan
-} from '../../../../../store/Selector';
+import { getPhuongQuan, getPhuongSelect2, getQuan, getQuanSelect2, getTenPhuong2, getTenQuan2 } from '../../../../../../store/Selector';
+import { setPhuongSelect2, setQuanSelect2, setTenPhuong2, setTenQuan2 } from '../../../../../../store/actions/Log';
 import './Style.scss';
 
-const Quan = () => {
-  const quanSelect = useSelector(getQuanSelect);
-  const tenquan = useSelector(getTenQuan);
+const Quan2 = () => {
+  const quanSelect = useSelector(getQuanSelect2);
+  const tenquan = useSelector(getTenQuan2);
   const quan = useSelector(getQuan);
   const dispatch = useDispatch();
 
   const handleOnClick = async (item) => {
-    dispatch(setTenPhuong(item.phuong.TenPhuong));
-    dispatch(setPhuongSelect(item.phuong.MaPhuong));
-    dispatch(setQuanSelect(item.quan.MaQuan));
-    dispatch(setTenQuan(item.quan.TenQuan));
+    dispatch(setTenPhuong2(item.phuong.TenPhuong));
+    dispatch(setPhuongSelect2(item.phuong.MaPhuong));
+    dispatch(setQuanSelect2(item.quan.MaQuan));
+    dispatch(setTenQuan2(item.quan.TenQuan));
   };
 
   const handleOnClick2 = async (item) => {
-    dispatch(setTenQuan(item.TenQuan));
-    dispatch(setQuanSelect(item.MaQuan));
+    dispatch(setTenQuan2(item.TenQuan));
+    dispatch(setQuanSelect2(item.MaQuan));
   };
 
   return (
@@ -41,8 +27,7 @@ const Quan = () => {
         className="btn btn-light dropdown-toggle danhsach_quan-btn"
         type="button"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+        aria-expanded="false">
         {tenquan}
       </button>
       <ul className="dropdown-menu" style={{ width: '100%' }}>
@@ -55,8 +40,7 @@ const Quan = () => {
                 phuong: { TenPhuong: 'Phuong', MaPhuong: 'Phuong' },
                 quan: { TenQuan: 'Quan', MaQuan: 'Quan' }
               })
-            }
-          >
+            }>
             Quan
           </a>
         </li>
@@ -88,4 +72,4 @@ const Quan = () => {
   );
 };
 
-export default Quan;
+export default Quan2;

@@ -25,3 +25,9 @@ export const getDonVi = (state) => state.FilterReducer.DonVi;
 export const getTheLoai = (state) => state.FilterReducer.TheLoai;
 export const getSoPhongNgu = (state) => state.FilterReducer.SoPhongNgu;
 export const getSoPhongVeSinh = (state) => state.FilterReducer.SoPhongVeSinh;
+
+
+export const getPhuongSelect2 = (state) => state.InputUploadReducer.phuongSelect2;
+export const getQuanSelect2 = (state) => state.InputUploadReducer.quanSelect2;
+export const getTenPhuong2 = (state) => state.InputUploadReducer.tenphuong2;
+export const getTenQuan2 = (state) => state.InputUploadReducer.tenquan2;

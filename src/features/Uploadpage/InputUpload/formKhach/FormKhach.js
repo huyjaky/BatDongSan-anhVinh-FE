@@ -1,6 +1,6 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
@@ -107,7 +107,7 @@ const FormKhach = (props) => {
     }
   };
 
-  useEffect(() => {
+  useMemo(() => {
     dispatch(setTenPhuong('Phuong'));
     dispatch(setTenQuan('Quan'));
     dispatch(setPhuongSelect(''));
