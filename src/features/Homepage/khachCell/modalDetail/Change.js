@@ -145,20 +145,20 @@ const Change = (props) => {
           Link Face
         </label>
         <div className="input-group">
-          <span className="input-group-text" id="basic-addon3">
+          <span className="input-group-text">
             Link:
           </span>
           <input
             type="text"
             className="form-control"
             id="basic-url"
-            aria-describedby="basic-addon3"
-            placeholder={khachDetail.Linkface}
+            placeholder={khachDetail.khach.Linkface}
             value={Linkface}
             onChange={(event) => setLinkface(event.target.value)}
           />
         </div>
       </div>
+
       <div className="form-text text-black">Tai Chinh</div>
 
       <div className="input-group mb-3">
@@ -169,6 +169,7 @@ const Change = (props) => {
           className="form-control"
           required
           aria-label="Amount (to the nearest dollar)"
+          placeholder={parseInt(khachDetail.khach.TaiChinh)}
           value={TaiChinh}
           onChange={(event) => setTaiChinh(event.target.value)}
         />
