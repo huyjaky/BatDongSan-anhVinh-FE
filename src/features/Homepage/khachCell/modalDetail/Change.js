@@ -42,7 +42,7 @@ const Change = (props) => {
   const handleOnClick = async () => {
     try {
       toast.loading('Data is loading');
-      const response = await axios.post('http://localhost:4000/api/change/khach', {
+      const response = await axios.post('http://112.213.89.28:4001/api/change/khach', {
         khach: loaikhach,
         MaViTri: khachDetail.khach.MaViTri,
         MaKhach: khachDetail.khach.MaKhach,
@@ -247,7 +247,7 @@ const Change = (props) => {
             allowMultiple={true}
             maxFiles={30}
             maxParallelUploads={30}
-            server="http://localhost:4000/api/change/img"
+            server="http://112.213.89.28:4001/api/change/img"
             name="files" /* sets the file input name, it's filepond by default */
             labelIdle='Keo va tha anh <span class="filepond--label-action">Browse</span>'
             acceptedFileTypes={[
