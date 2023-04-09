@@ -18,7 +18,7 @@ const PriceRange = () => {
     const percentage = (newValue / 100) * 100;
     priceDisplayElement.style.left = `calc(${percentage}% - 50%)`;
   };
-  useEffect(() => {}, [price, Donvi]);
+  useEffect(() => { }, [price, Donvi]);
 
   return (
     <div className="normal-filter">
@@ -39,17 +39,15 @@ const PriceRange = () => {
           style={{ flex: '12', marginRight: '20px' }}
         />
 
-        <select
-          className="form-select"
-          aria-label="Default select example"
-          style={{ flex: '1' }}
-          onClick={(event) => dispatch(setDonVi(event.target.value))}
-          defaultValue={Donvi}
-        >
-          {/* <option selected>Open this select menu</option> */}
-          <option value="Trieu">Trieu</option>
-          <option value="Ty">Ty</option>
-        </select>
+        <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {Donvi}
+          </button>
+          <ul className="dropdown-menu">
+            <li><a className="dropdown-item" onClick={event => dispatch(setDonVi('Ty'))} >Ty</a></li>
+            <li><a className="dropdown-item" onClick={event => dispatch(setDonVi('Trieu'))}>Trieu</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   );
