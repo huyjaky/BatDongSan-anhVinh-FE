@@ -41,9 +41,8 @@ const KhachChoThue = (props) => {
           'KhachChoThue',
           'Trieu'
         );
-        await setArrKhach(khach.arrKhach);
-        await setArrHinh(khach.arrHinh);
-        console.log(arrKhach);
+        setArrKhach(khach.arrKhach);
+        setArrHinh(khach.arrHinh);
       }
     };
     fetchData();
