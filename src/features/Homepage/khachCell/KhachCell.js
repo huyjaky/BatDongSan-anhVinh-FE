@@ -96,7 +96,7 @@ const KhachCell = (props) => {
 
     try {
       toast.loading('Data is loading!');
-      const response = await axios.post('http://112.213.89.28:4500/api/remove/khach', {
+      const response = await axios.post('http://112.213.89.194:4500/api/remove/khach', {
         khach: khachDetail,
         loaikhach: loaikhach
       });
@@ -182,7 +182,7 @@ const KhachCell = (props) => {
                         <div className="container" key={index} style={{ borderRadius: '40px' }}>
                           <img
                             className="img-nha"
-                            src={`http://112.213.89.28:4500/api/img/path/${item.Hinh}`}
+                            src={`http://112.213.89.194:4500/api/img/path/${item.Hinh}`}
                             alt="mota"></img>
                           <div className="img-text">
                             <Link to="#" className="link-text">

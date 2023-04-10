@@ -14,7 +14,7 @@ const Detail = () => {
             return (
               <div key={index} style={{ borderRadius: '40px' }}>
                 <img
-                  src={`http://112.213.89.28:4500/api/img/path/${item.Hinh}`}
+                  src={`http://112.213.89.194:4500/api/img/path/${item.Hinh}`}
                   className="img-nha"
                   alt="mota"
                 ></img>
