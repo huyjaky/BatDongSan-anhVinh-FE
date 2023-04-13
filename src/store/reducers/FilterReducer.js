@@ -1,5 +1,6 @@
 const initState = {
   priceRange: 500,
+  limitRange: 0,
   DonVi: 'Ty',
   TheLoai: 'Tat Ca',
   SoPhongNgu: '',
@@ -8,6 +9,11 @@ const initState = {
 
 const FilterReducer = (state = initState, action) => {
   switch (action.type) {
+    case 'SET_LIMITRANGE':
+      return {
+        ...state,
+        limitRange: action.payload
+      }
     case 'SET_PRICERANGE':
       return {
         ...state,

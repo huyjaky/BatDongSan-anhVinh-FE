@@ -174,3 +174,10 @@ export const setTenQuan2 = (current) => {
     payload: current
   };
 };
+
+export const setLimitRange =(current)=> {
+  return {
+    type: 'SET_LIMITRANGE',
+    payload: current
+  }
+}

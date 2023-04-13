@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import {
   getDonVi,
   getKhachChoThue,
+  getLimitRange,
   getPriceRange,
   getSoPhongNgu,
   getSoPhongVeSinh,
@@ -17,6 +18,7 @@ import { fileFilter } from './filter';
 const KhachChoThue = (props) => {
   const DonVi = useSelector(getDonVi);
   const PriceRange = useSelector(getPriceRange);
+  const LimitRange = useSelector(getLimitRange);
   const khachchothue = useSelector(getKhachChoThue);
   const SoPhongNgu = parseInt(useSelector(getSoPhongNgu));
   const SoPhongVeSinh = parseInt(useSelector(getSoPhongVeSinh));
@@ -32,6 +34,7 @@ const KhachChoThue = (props) => {
         const khach = await fileFilter(
           DonVi,
           PriceRange,
+          LimitRange,
           khachchothue,
           SoPhongNgu,
           SoPhongVeSinh,
@@ -49,6 +52,7 @@ const KhachChoThue = (props) => {
   }, [
     DonVi,
     PriceRange,
+    LimitRange,
     khachchothue,
     setArrHinh,
     setArrKhach,

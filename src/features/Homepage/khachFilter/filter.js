@@ -1,6 +1,7 @@
 export const fileFilter = async (
   DonVi,
   PriceRange,
+  LimitRange,
   khach,
   SoPhongNgu,
   SoPhongVeSinh,
@@ -51,21 +52,22 @@ export const fileFilter = async (
         img: khach.imgKhachChoThue
       };
     }
+    console.log(LimitRange);
 
     await khach_in.khach.filter((item, index) => {
       if (DonViKhach === 'Trieu') {
-        if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) <= PriceRange) {
+        if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) <= PriceRange && parseFloat(item.TaiChinh) >= LimitRange) {
           arrKhach1 = [...arrKhach1, item];
           arrHinh1 = [...arrHinh1, khach_in.img[index]];
-        } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange * 1000) {
+        } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange * 1000 && parseFloat(item.TaiChinh) >= LimitRange * 1000) {
           arrKhach1 = [...arrKhach1, item];
           arrHinh1 = [...arrHinh1, khach_in.img[index]];
         }
       } else if (DonViKhach === 'Ty') {
-        if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange) {
+        if (DonVi === 'Trieu' && parseFloat(item.TaiChinh) * 1000 <= PriceRange && parseFloat(item.TaiChinh) >= LimitRange * 1000) {
           arrKhach1 = [...arrKhach1, item];
           arrHinh1 = [...arrHinh1, khach_in.img[index]];
-        } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange) {
+        } else if (DonVi === 'Ty' && parseFloat(item.TaiChinh) <= PriceRange && parseFloat(item.TaiChinh) >= LimitRange) {
           arrKhach1 = [...arrKhach1, item];
           arrHinh1 = [...arrHinh1, khach_in.img[index]];
         }
