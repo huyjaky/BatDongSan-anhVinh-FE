@@ -1,5 +1,5 @@
 import moment from 'moment/moment';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { getKhachDetail } from '../../../../store/Selector';
@@ -8,7 +8,7 @@ import Detail from './detail/Detail';
 const DetailHouse = () => {
   const khach = useSelector(getKhachDetail);
 
-  useEffect(() => {}, [khach]);
+  useEffect(() => { }, [khach]);
 
   return (
     <div>
@@ -17,8 +17,7 @@ const DetailHouse = () => {
         id="exampleModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div className="modal-dialog modal-xl modal-dialog-scrollable modal-fullscreen-xxl-down">
           <div className="modal-content">
             <div className="modal-header">
@@ -39,8 +38,7 @@ const DetailHouse = () => {
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div className="modal-body" style={{ height: '100vh' }}>
               <Detail />
@@ -57,8 +55,7 @@ const DetailHouse = () => {
                         data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseOne"
                         aria-expanded="false"
-                        aria-controls="flush-collapseOne"
-                      >
+                        aria-controls="flush-collapseOne">
                         #Thong Tin
                       </button>
                     </h2>
@@ -66,8 +63,7 @@ const DetailHouse = () => {
                     <div
                       id="flush-collapseOne"
                       className="accordion-collapse collapse"
-                      data-bs-parent="#accordionFlushExample"
-                    >
+                      data-bs-parent="#accordionFlushExample">
                       {khach && khach.khach ? (
                         <>
                           <div className="input-group">
@@ -75,8 +71,7 @@ const DetailHouse = () => {
                               type="text"
                               className="form-control"
                               placeholder="Username"
-                              aria-label="Username"
-                            >
+                              aria-label="Username">
                               {khach.khach.MaKhach}
                             </span>
                             <span className="input-group-text">@</span>
@@ -84,8 +79,7 @@ const DetailHouse = () => {
                               type="text"
                               className="form-control"
                               placeholder="Server"
-                              aria-label="Server"
-                            >
+                              aria-label="Server">
                               {moment(khach.khach.NgayDang).format('DD/MM/YY HH:mm')}
                             </span>
                           </div>
@@ -98,8 +92,7 @@ const DetailHouse = () => {
                               className="form-control"
                               placeholder="Username"
                               aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            >
+                              aria-describedby="basic-addon1">
                               {khach.khach.TenKhach}
                             </span>
                             <span className="input-group-text" id="basic-addon1">
@@ -110,8 +103,7 @@ const DetailHouse = () => {
                               className="form-control"
                               placeholder="Username"
                               aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            >
+                              aria-describedby="basic-addon1">
                               {khach.khach.Sdt}
                             </span>
                           </div>
@@ -120,8 +112,7 @@ const DetailHouse = () => {
                             <span
                               type="text"
                               className="form-control"
-                              aria-label="Amount (to the nearest dollar)"
-                            >
+                              aria-label="Amount (to the nearest dollar)">
                               {khach.khach.TaiChinh}
                             </span>
                             <span className="input-group-text">{khach.donvi}</span>
@@ -133,8 +124,7 @@ const DetailHouse = () => {
                               className="form-control"
                               placeholder="Username"
                               aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            >
+                              aria-describedby="basic-addon1">
                               {khach.khach.Linkface}
                             </span>
                           </div>
@@ -145,8 +135,7 @@ const DetailHouse = () => {
                               type="text"
                               className="form-control"
                               placeholder="Username"
-                              aria-label="Username"
-                            >
+                              aria-label="Username">
                               {khach.khach.SoPhongNgu}
                             </span>
                             <span className="input-group-text">@So Phong Ve Sinh</span>
@@ -154,8 +143,7 @@ const DetailHouse = () => {
                               type="text"
                               className="form-control"
                               placeholder="Server"
-                              aria-label="Server"
-                            >
+                              aria-label="Server">
                               {khach.khach.SoPhongVeSinh}
                             </span>
                             <span className="input-group-text">@The Loai</span>
@@ -163,9 +151,9 @@ const DetailHouse = () => {
                               type="text"
                               className="form-control"
                               placeholder="Server"
-                              aria-label="Server"
-                            >
+                              aria-label="Server">
                               {khach.khach.TheLoai}
+                              {console.log(khach.khach.TheLoai)}
                             </span>
                           </div>
 
@@ -174,15 +162,15 @@ const DetailHouse = () => {
                             <textarea
                               readOnly
                               className="form-control"
-                              placeholder="Server"
-                              aria-label="Server"
                               style={{
                                 height: '100px',
                                 overflow: 'auto',
                                 border: '1px solid #ccc'
+
                               }}
-                              defaultValue={khach.khach.NhuCauChiTiet}
-                            ></textarea>
+                              placeholder={khach.khach.NhuCauChiTiet}
+                              >
+                            </textarea>
                           </div>
                         </>
                       ) : (
