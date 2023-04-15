@@ -57,12 +57,9 @@ const FormKhach = (props) => {
       !TenDuong ||
       !TaiChinh ||
       !NhuCauChiTiet ||
-      !phuongSelect ||
-      !quanSelect ||
       !SoPhongVeSinh ||
-      !SoPhongNgu ||
-      phuongSelect === 'Phuong' ||
-      quanSelect === 'Quan'
+      !SoPhongNgu
+
     ) {
       toast.warning('Nhap Thieu Thong Tin Cua Khach Vui Long Kiem Tra Lai!');
     } else {
@@ -76,8 +73,8 @@ const FormKhach = (props) => {
           Linkface: Linkface,
           TaiChinh: TaiChinh,
           NhuCauChiTiet: NhuCauChiTiet,
-          MaPhuong: phuongSelect,
-          MaQuan: quanSelect,
+          MaPhuong: phuongSelect ? phuongSelect :'P0',
+          MaQuan: quanSelect ? quanSelect : 'Q0',
           SoPhongNgu: SoPhongNgu,
           SoPhongVeSinh: SoPhongVeSinh,
           TheLoai: TheLoai
